@@ -1,0 +1,93 @@
+---
+id: overview
+title: Overview
+slug: /
+sidebar_position: 1
+---
+
+# Overview
+
+## What is Iteration?
+
+**Iteration** ([iteration.sh](https://iteration.sh)) is an **operating
+system for software factories**. It provides tools for developers,
+architects, and coding agents to build software that is reliable, cost
+efficient, and secure.
+
+## What is ATX?
+
+**ATX** (AgenT neXus) is Iteration's **local-first agent daemon** — the
+component of the OS that runs on a developer's machine. It does three
+things:
+
+1. **Reviews code locally** — a fleet of specialized agents reads your
+   staged changes, session diffs, or a commit range and returns a
+   structured verdict: blocking issues (`B1`, `B2`, ...), warnings, and a
+   rating. No PR URL, no cloud round-trip.
+2. **Optimizes models for your project** — ATX inspects each repo,
+   generates a purpose-built agent fleet, and lets you route different
+   review roles to the provider and model that actually fit the project
+   (Claude Code, Anthropic, Codex, Bedrock, LiteLLM, or a local Ollama
+   model).
+3. **Collects memories from local work** — resolved issues, reviewer
+   feedback, and recurring patterns feed ATX's memory store, so future
+   reviews reference your codebase's real conventions instead of generic
+   advice. Memory lives on disk in your project, not in a hosted service.
+
+You don't hand ATX a PR URL and wait — it plugs into your existing coding
+loop (Claude Code sessions, staged changes, or a specific commit range) and
+returns structured, actionable feedback.
+
+## Who ATX is for
+
+- Engineers who want a review step **inside their editing loop**, not
+  after a PR is opened.
+- Teams that want consistent enforcement of house rules without
+  hand-writing another linter.
+- Anyone using Claude Code, OpenAI Codex, Bedrock, or a LiteLLM proxy who
+  wants an agentic quality gate in front of their commits.
+
+## How ATX works
+
+ATX runs a **review-fix loop** in front of every commit. The developer
+(or their coding agent) writes code, ATX reviews it, the developer fixes
+what's flagged, and the loop repeats — usually a handful of times — until
+the rating clears the merge gate. Only then does the commit land.
+
+```
+   Developer                  ATX
+   ─────────                  ───
+
+   write code   ── review ─▶  rating 2/5, blockers
+                ◀─ verdict ──
+   fix          ── review ─▶  rating 3/5, blockers
+                ◀─ verdict ──
+   fix          ── review ─▶  rating 4/5, clean  ✓
+                ◀─ verdict ──
+   git commit
+```
+
+### The loop, step by step
+
+1. **Start the daemon** — `atx server start`. One long-lived process on
+   `http://localhost:30000` supervises everything.
+2. **Initialize your project** — `atx project init` in your repo. ATX
+   inspects the codebase, generates a purpose-built agent fleet, and
+   registers the project.
+3. **Review your changes** — `atx review` (session hook) or
+   `atx review request --prompt "..."` (ad-hoc scope). The fleet routes
+   each agent through the provider/model configured for its role and
+   returns a rating, blocking issues, and warnings.
+4. **Iterate** — fix the blockers, re-review, repeat until the rating
+   clears your merge gate.
+5. **Learnings persist** — resolved issues and reviewer feedback feed
+   ATX's on-disk memory store, so the next review references your
+   project's real patterns instead of generic advice.
+
+## What's next
+
+- [Installation](/installation) — install ATX on macOS or Linux.
+- [Quickstart](/quickstart) — from install to your first successful
+  review in under 10 minutes.
+- [Providers and Authentication](/providers) — connect Anthropic,
+  Bedrock, Codex, or LiteLLM.
