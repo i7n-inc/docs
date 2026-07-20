@@ -11,6 +11,35 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.07.06 — 2026-07-20
+
+**Added**
+
+- Reviews are now first-class: every task is bound to a Review at
+  creation time, with dedicated storage, a REST API on the project
+  supervisor, and new CLI commands `atx project reviews list` /
+  `atx project reviews show` plus `atx review request --review <id>`
+  (#748, #749, #750, #765, #767, #769, #770, #773, #780).
+- Dashboard review-detail page now matches the CLI structure, plus a
+  global horizontal-scroll fix (#782, #783).
+- Learning capture is gated at extraction time by a scope classifier
+  so out-of-scope memories are rejected before they land (#784, #785).
+- Dashboard footer link to https://docs.iteration.sh (#787).
+
+**Changed**
+
+- `/dashboard/reviews` repurposed as the Groups view, with a
+  project-wide terminology sweep (#752, #771).
+- Project-detail Tasks tab removed; Review Status is now derived from
+  the newest task per review (#788, #789).
+
+**Docs**
+
+- AGENTS.md trimmed to high-level guidelines, with domain principles
+  extracted into `DOMAIN.md` (#761).
+- Release skill updater URLs corrected and 707 plan added (#764).
+- Implementation plan for docs.iteration.sh (#759, #775).
+
 ## 26.07.05 — 2026-07-17
 
 **Fixed**
