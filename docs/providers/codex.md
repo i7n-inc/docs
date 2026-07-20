@@ -1,10 +1,10 @@
 ---
 id: codex
-title: OpenAI Codex
+title: OpenAI (Subscription)
 slug: /providers/codex
 ---
 
-# OpenAI Codex (ChatGPT subscription)
+# OpenAI (Subscription) — Codex / ChatGPT
 
 ```bash
 atx provider add openai              # browser OAuth (PKCE)

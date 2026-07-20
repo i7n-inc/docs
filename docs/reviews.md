@@ -1,13 +1,13 @@
 ---
 id: reviews
-title: Run Reviews
+title: Reviews
 slug: /reviews
 sidebar_position: 6
 ---
 
-# Run Reviews
+# Reviews
 
-:::info Coming soon
+:::info[Coming soon]
 Full guide to the three review paths (`atx review`, `atx review request`,
 MCP `review_changes` / `request_review`), when to use each, and how to
 iterate on blocking issues until the rating passes your merge gate.

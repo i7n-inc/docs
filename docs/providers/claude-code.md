@@ -1,10 +1,10 @@
 ---
 id: claude-code
-title: Claude Code login
+title: Anthropic (Subscription)
 slug: /providers/claude-code
 ---
 
-# Claude Code login
+# Anthropic (Subscription) — Claude Code login
 
 If you already use Claude Code interactively:
 

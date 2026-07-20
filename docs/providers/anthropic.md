@@ -1,10 +1,10 @@
 ---
 id: anthropic
-title: Anthropic
+title: Anthropic (API Key)
 slug: /providers/anthropic
 ---
 
-# Anthropic (API key)
+# Anthropic (API Key)
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
@@ -14,7 +14,7 @@ atx provider add anthropic --api-key sk-ant-...
 
 Also accepts `ANTHROPIC_AUTH_TOKEN`.
 
-:::caution Restart the daemon after exporting
+:::caution[Restart the daemon after exporting]
 ```bash
 atx server stop && atx server start
 ```

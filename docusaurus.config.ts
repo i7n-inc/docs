@@ -84,6 +84,7 @@ const config: Config = {
           items: [
             {label: 'iteration.sh', href: 'https://iteration.sh'},
             {label: 'Discord', href: 'https://discord.gg/Y6xgEXg8E3'},
+            {label: 'YouTube', href: 'https://www.youtube.com/@IterationHQ'},
           ],
         },
       ],
