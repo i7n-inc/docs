@@ -21,6 +21,15 @@ atx project init
 ATX inspects the codebase, generates a specialized agent fleet, and
 registers the project with the daemon.
 
+What `atx project init` does:
+
+- registers the git repository with the daemon
+- analyzes the repo to generate a project-specific specialist fleet
+- writes Claude Code integration files for hooks and MCP
+- registers the ATX MCP server for the project
+- when OpenCode is available, registers ATX in the project's OpenCode MCP
+  config too
+
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', margin: '1rem 0 1.5rem'}}>
   <iframe
     style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0}}
@@ -57,7 +66,18 @@ count.
 ```bash
 atx project agents                       # list agents for the current project
 atx project agents export --format=claude
+atx project agents edit <name> --model <slug>
+atx project agents rematch
 ```
+
+ATX does not create one generic reviewer. It creates a fleet with a
+leader plus specialists tuned to different concerns inside your repo. The
+specialists are intentionally opinionated from different angles, so the
+review loop is adversarial in a productive way: architecture, tests,
+interfaces, and subsystem-specific concerns can all challenge the same
+change independently.
+
+See [Specialists](/specialists) for more detail and a real fleet example.
 
 ## Project-wide model override
 
@@ -72,7 +92,5 @@ Applied to every system-generated agent on the next
 `atx project init --force`; survives `--force`. User-overridden rows
 keep their explicit model.
 
-:::info[More detail coming]
-End-to-end walkthrough of the generated fleet and everything ATX writes
-to `.itx/` will land in a future revision.
-:::
+ATX also writes project integration state under `.itx/` and refreshes it
+on `atx project init --force`.

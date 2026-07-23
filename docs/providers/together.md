@@ -6,6 +6,10 @@ slug: /providers/together
 
 # Together AI (API key)
 
+## Official docs
+
+- Together AI Docs: [docs.together.ai/docs/introduction](https://docs.together.ai/docs/introduction)
+
 ```bash
 export TOGETHER_API_KEY=...
 # or

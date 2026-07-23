@@ -6,6 +6,10 @@ slug: /providers/lilac
 
 # Lilac (API key)
 
+## Official docs
+
+- Lilac Docs: [docs.getlilac.com](https://docs.getlilac.com/)
+
 ```bash
 atx provider add lilac --api-key ...
 ```

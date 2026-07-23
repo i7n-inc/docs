@@ -67,11 +67,36 @@ atx review request --worktree feature-branch --prompt "review my staged changes"
 
 ATX returns a structured review with:
 
+- live progress lines while the review is running
 - a rating
 - blocking findings (`B1`, `B2`, ...)
 - warnings and suggestions
 - the rendered markdown review
 - cost and duration metadata in JSON mode
+
+While the task is active, ATX now streams reviewer lifecycle progress to
+the CLI and prints dashboard URLs as soon as the task is created, so you
+can follow the review in the terminal or jump into the web UI.
+
+Sample output:
+
+```text
+$ atx review request --prompt "review my staged changes"
+Created review task task_01K17Y... for project /home/devashish/workspace/i7n/atx
+Dashboard: http://localhost:30000/dashboard/reviews/rev_01K17Y...
+Project:   http://localhost:30000/dashboard/projects/-home-devashish-workspace-i7n-atx
+
+[leader] loading project context
+[leader] selecting specialist reviewers
+[architecture] reviewing changed interfaces
+[tests] checking coverage and edge cases
+[heartbeat] review still running...
+
+Review complete
+Rating: 4/5
+Blocking: 0
+Warnings: 2
+```
 
 Typical workflow:
 
@@ -111,6 +136,8 @@ The MCP tools return the same v1 review envelope as `atx review
 
 - `review_changes` is the MCP equivalent of the hook-driven review path.
 - `request_review` is the MCP equivalent of `atx review request`.
+- MCP progress notifications forward the same live progress lines that the
+  CLI prints during a running review.
 
 If MCP is disabled for the project, review calls fail with an actionable
 message telling you to run:

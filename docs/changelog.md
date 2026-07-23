@@ -11,6 +11,38 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.07.07 — 2026-07-23
+
+**Added**
+
+- AWS Bedrock support now covers multiple vendors. Anthropic models stay
+  on the Claude CLI path, while non-Anthropic Bedrock models use the
+  Bedrock Converse SDK path with cost accounting (#835, #836, #838,
+  #840).
+- Models catalog metadata is richer: `Lab` and `Pricing` are now
+  first-class fields across the ATX catalog (#807, #812).
+- Dashboard Models page now uses a flat lab-oriented table instead of
+  provider grouping (#818, #821, #824, #825).
+- Models page and project best-fit-lab flows are now scoped to providers
+  actually configured in ATX (#842).
+- Project MCP access can now be toggled at init time and via CLI
+  commands (#805, #816).
+- `atx review` and `atx review request` now stream agent lifecycle
+  progress during the review loop (#826, #839).
+
+**Fixed**
+
+- `atx project init --provider=bedrock` and `--provider=gemini` now wire
+  correctly (#797, #809).
+- Project init feedback now renders as a bordered summary table (#793,
+  #811).
+- `atx review` and `atx review request` now fail fast with init-required
+  guidance on uninitialized projects (#791, #813).
+- Repeated `request_review` iterations now group into a single review
+  block instead of fragmenting across separate rows (#810, #815).
+- Bedrock model cache now loads in the CLI catalog builder (#817 follow-
+  up, #823).
+
 ## 26.07.06 — 2026-07-20
 
 **Added**

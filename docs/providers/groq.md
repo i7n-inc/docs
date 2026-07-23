@@ -6,6 +6,10 @@ slug: /providers/groq
 
 # Groq (API key)
 
+## Official docs
+
+- Groq Docs: [console.groq.com/docs/overview](https://console.groq.com/docs/overview)
+
 ```bash
 export GROQ_API_KEY=gsk_...
 # or

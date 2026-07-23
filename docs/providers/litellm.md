@@ -6,6 +6,10 @@ slug: /providers/litellm
 
 # LiteLLM (self-hosted proxy)
 
+## Official docs
+
+- LiteLLM Docs: [docs.litellm.ai](https://docs.litellm.ai/)
+
 ```bash
 atx provider add litellm --base-url http://host:4000 [--api-key sk-...]
 atx provider sync litellm

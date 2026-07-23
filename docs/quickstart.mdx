@@ -77,9 +77,10 @@ cd /path/to/your/repo
 atx project init
 ```
 
-ATX inspects the repo, generates a specialized agent fleet, and
-registers the project with the daemon. Re-run with `--force` any time
-your codebase has changed enough that you want the fleet regenerated.
+ATX inspects the repo, generates a specialized agent fleet, registers the
+project with the daemon, and wires the local integration files ATX uses
+for hooks and MCP. Re-run with `--force` any time your codebase has
+changed enough that you want the fleet regenerated.
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', margin: '1rem 0 1.5rem'}}>
   <iframe
@@ -103,8 +104,6 @@ You'll get back a structured envelope: a rating, a list of blocking
 issues (`B1`, `B2`, ...), and warnings. Fix the blockers, re-run, and
 watch the rating climb.
 
-![ATX first review result](/img/screenshots/first-review.png)
-
 If you use Claude Code with ATX hooks installed, `atx review` alone (no
 `--prompt`) will pick up the file changes the current session
 captured.
@@ -116,8 +115,7 @@ open http://localhost:30000/dashboard
 ```
 
 See every registered project, its agent fleet, and every review session
-with full logs and Mermaid sequence diagrams. Details in
-[Dashboard](/dashboard).
+with full logs and sequence diagrams. Details in [Dashboard](/dashboard).
 
 ## Where next
 

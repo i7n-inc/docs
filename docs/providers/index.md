@@ -29,15 +29,13 @@ atx server stop && atx server start
 
 | Provider | Best for | Setup |
 |---|---|---|
-| [Anthropic (Subscription)](/providers/claude-code) | You already use Claude Code interactively | `claude login` |
-| [Anthropic (API Key)](/providers/anthropic) | Fastest path if you have an Anthropic API key | Env var or `atx provider add` |
-| [OpenAI (Subscription)](/providers/codex) | ChatGPT / Codex subscription users | Browser OAuth |
-| [OpenAI (API Key)](/providers/openai) | Direct OpenAI API access | Env var or `atx provider add` |
-| [AWS Bedrock](/providers/bedrock) | Enterprise / AWS-native accounts | AWS access key + region |
-| [LiteLLM](/providers/litellm) | Self-hosted proxy fronting many models | Base URL + optional API key |
-| [Lilac](/providers/lilac) | Lilac hosted API (`api.getlilac.com`) | API key |
+| [Anthropic](/providers/anthropic) | Claude Code subscribers or Anthropic API users | `claude login` or API key |
+| [AWS](/providers/aws) | AWS-native accounts using Bedrock-hosted models | Access keys or shared AWS config / SSO |
 | [Gemini](/providers/gemini) | Google Gemini API | API key |
+| [Groq](/providers/groq) | Groq low-latency inference | API key |
+| [Lilac](/providers/lilac) | Lilac hosted API (`api.getlilac.com`) | API key |
+| [LiteLLM](/providers/litellm) | Self-hosted proxy fronting many models | Base URL + optional API key |
+| [Ollama](/providers/ollama) | Local inference | Base URL |
+| [OpenAI](/providers/openai) | ChatGPT / Codex subscribers or direct OpenAI API users | Browser OAuth or API key |
 | [OpenRouter](/providers/openrouter) | Model marketplace via OpenAI-compatible API | API key |
 | [Together](/providers/together) | Together AI hosted open models | API key |
-| [Groq](/providers/groq) | Groq low-latency inference | API key |
-| [Ollama](/providers/ollama) | Local inference | Base URL |

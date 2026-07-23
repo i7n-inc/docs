@@ -1,10 +1,31 @@
 ---
 id: openai
-title: OpenAI (API Key)
+title: OpenAI
 slug: /providers/openai
 ---
 
-# OpenAI (API Key)
+# OpenAI
+
+ATX supports OpenAI in two ways: subscription-backed browser login and
+direct API keys.
+
+## Official docs
+
+- Codex CLI: [developers.openai.com/codex/cli](https://developers.openai.com/codex/cli)
+- OpenAI API: [platform.openai.com/docs/overview](https://platform.openai.com/docs/overview)
+
+## Subscription
+
+```bash
+atx provider add openai
+atx project init --provider=codex
+```
+
+This uses the browser OAuth flow for ChatGPT / Codex subscription users.
+Token refresh is automatic. Subscription-backed reviews report
+`cost_usd=0`.
+
+## API key
 
 ```bash
 export OPENAI_API_KEY=sk-...
@@ -14,9 +35,6 @@ atx provider add openai --api-key sk-...
 
 ATX routes API-key OpenAI through the standard `api.openai.com`
 endpoint. Reviews report real `cost_usd` per token.
-
-For the ChatGPT / Codex subscription flow (no API key required, browser
-OAuth), see [OpenAI (Subscription)](/providers/codex).
 
 :::caution[Restart the daemon after exporting]
 ```bash

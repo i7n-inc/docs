@@ -6,6 +6,10 @@ slug: /providers/openrouter
 
 # OpenRouter (API key)
 
+## Official docs
+
+- OpenRouter Docs: [openrouter.ai/docs/quickstart](https://openrouter.ai/docs/quickstart)
+
 ```bash
 export OPENROUTER_API_KEY=sk-or-...
 # or

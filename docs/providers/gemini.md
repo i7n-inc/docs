@@ -6,6 +6,10 @@ slug: /providers/gemini
 
 # Google Gemini (API key)
 
+## Official docs
+
+- Gemini API: [ai.google.dev/gemini-api/docs](https://ai.google.dev/gemini-api/docs)
+
 ```bash
 export GEMINI_API_KEY=AIzaSy...
 # or

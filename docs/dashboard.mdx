@@ -18,7 +18,8 @@ Once the daemon is running, the dashboard is at
   session count. Drill in for agents and sessions per project.
 - **Reviews** — cross-project review groups sorted by most recent.
 - **Memories** — approved + applied learnings across projects.
-- **Models** — flat model catalog with lab filtering and provider details.
+- **Models** — flat model catalog scoped to configured providers, with lab
+  filtering and provider details.
 - **Session detail** — full conversation logs and Mermaid sequence
   diagrams for each review.
 
@@ -36,9 +37,15 @@ Recent updates also make it easier to inspect model choices from the
 project page:
 
 - the rematch flow is lab-oriented instead of provider-tab oriented
+- the best-fit lab picker is scoped to providers already configured for
+  that project
 - agent names open the detail modal directly
 - model detail links jump into the catalog page with the matching model
   preselected
+
+If a project has no configured providers yet, the rematch flow shows an
+empty state that points you back to provider setup instead of offering
+labs that ATX cannot actually route to.
 
 ### Reviews
 
@@ -64,6 +71,7 @@ The models view is now a flat catalog instead of provider tabs.
 
 - filter by upstream lab with the `All labs` dropdown
 - inspect one row per provider-carried model
+- the catalog is scoped to providers you have actually configured in ATX
 - open the row to see context window, pricing, thinking support,
   sampling defaults, and other metadata
 - use it as the source of truth when you want to understand what ATX can
@@ -71,4 +79,5 @@ The models view is now a flat catalog instead of provider tabs.
 
 The current page is useful for both operators and reviewers: it shows the
 same catalog ATX uses for routing, including provider-specific coverage of
-the same upstream family.
+the same upstream family. If you have zero configured providers, the page
+shows an empty-state CTA instead of a misleading global catalog.
