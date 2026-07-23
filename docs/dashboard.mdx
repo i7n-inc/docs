@@ -9,8 +9,6 @@ slug: /dashboard
 Once the daemon is running, the dashboard is at
 [`http://localhost:30000/dashboard`](http://localhost:30000/dashboard).
 
-![ATX dashboard landing page](/img/screenshots/dashboard-landing.png)
-
 ## What's on it
 
 - **Dashboard (landing)** — cost/successful task (median), time/successful
@@ -18,9 +16,9 @@ Once the daemon is running, the dashboard is at
   throughput.
 - **Projects** — every registered project with status, agent count, and
   session count. Drill in for agents and sessions per project.
-- **Reviews** — cross-project reviews table sorted by most recent.
+- **Reviews** — cross-project review groups sorted by most recent.
 - **Memories** — approved + applied learnings across projects.
-- **Models** — catalog by provider (what ATX will pick from).
+- **Models** — flat model catalog with lab filtering and provider details.
 - **Session detail** — full conversation logs and Mermaid sequence
   diagrams for each review.
 
@@ -31,29 +29,46 @@ Once the daemon is running, the dashboard is at
 The project summary shows review status, active agents, recent sessions,
 and the project-specific review loop.
 
-![ATX project summary](/img/screenshots/dashboard-project-summary.png)
-
 ### Agents
 
 The agents view shows the generated specialist fleet for the project.
+Recent updates also make it easier to inspect model choices from the
+project page:
 
-![ATX project agents](/img/screenshots/dashboard-project-agents.png)
+- the rematch flow is lab-oriented instead of provider-tab oriented
+- agent names open the detail modal directly
+- model detail links jump into the catalog page with the matching model
+  preselected
 
 ### Reviews
 
-The reviews view shows review groups, outcomes, and follow-up state.
+The reviews view shows review groups, outcomes, follow-up state, and the
+tasks attached to each review block. Iterative `request_review` runs now
+group into a single active review block instead of scattering across many
+one-task rows.
 
-![ATX project reviews](/img/screenshots/dashboard-project-reviews.png)
+Use this view when you want to answer:
+
+- what is still active
+- which blockers were found across iterations
+- whether a review loop is converging
 
 ### Memories
 
 The memories view shows approved learnings that ATX can reuse in later
 reviews.
 
-![ATX project memories](/img/screenshots/dashboard-project-memories.png)
-
 ### Models
 
-The models view shows provider model availability and routing choices.
+The models view is now a flat catalog instead of provider tabs.
 
-![ATX model settings](/img/screenshots/dashboard-models.png)
+- filter by upstream lab with the `All labs` dropdown
+- inspect one row per provider-carried model
+- open the row to see context window, pricing, thinking support,
+  sampling defaults, and other metadata
+- use it as the source of truth when you want to understand what ATX can
+  route to
+
+The current page is useful for both operators and reviewers: it shows the
+same catalog ATX uses for routing, including provider-specific coverage of
+the same upstream family.

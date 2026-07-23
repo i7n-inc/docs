@@ -44,6 +44,33 @@ picked the wrong default, force a specific provider at project init:
 atx project init --provider=<name> --force
 ```
 
+## Project not initialized
+
+If `atx review` or `atx review request` tells you the project must be
+initialized first, run:
+
+```bash
+atx project init
+```
+
+ATX now fails fast with this guidance instead of falling through to a
+misleading review/session error.
+
+## MCP disabled for this project
+
+If an MCP review call fails with `MCP disabled for this project`, re-enable
+the ATX MCP surface for the current repository:
+
+```bash
+atx project mcp enable
+```
+
+You can check the current state with:
+
+```bash
+atx project mcp status
+```
+
 ## Port conflict on 30000
 
 Something else is bound to the daemon port. Stop the other process, or
@@ -83,6 +110,10 @@ Bedrock routes through the Claude CLI subprocess, so ATX may not receive
 provider-native token cost metadata for every run. Treat the dashboard's
 Bedrock cost fields as operational guidance, not billing truth. Use AWS
 Cost Explorer for billing reconciliation.
+
+If you are looking at the model catalog instead of review billing, this is
+expected: catalog pages can now show Bedrock lab/pricing/context metadata
+for known Anthropic ARNs even though review-time cost still reports `0`.
 
 ## LiteLLM proxy fails
 
