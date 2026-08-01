@@ -11,6 +11,102 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.08.01 — 2026-08-01
+
+**Added**
+
+- `atx project memory why|edit|triage` — inspect why a memory exists,
+  edit its content or scope, and bulk-triage a project's memory pool
+  from the terminal (#903, implements #410).
+- Dashboard memory tab upgraded with bulk triage across many memories,
+  a drill-down view for a single memory's full history, a timeline of
+  capture and promotion events, and a cost preview that shows the
+  downstream token cost before you approve (#904, implements #412).
+- Reviews and cost surfaced inside Claude Code via two new MCP tools:
+  `reviews` lists recent reviews with ratings and links, and `cost`
+  shows a live rollup of what the current session is spending. The
+  same numbers are available at the terminal via a new `atx cost`
+  command (#905, implements #386).
+
+**Changed**
+
+- Bundled model catalog re-priced against authoritative upstreams.
+  Two lilac-routed community models saw small OpenRouter price
+  adjustments: `moonshotai/kimi-k2.6` dropped from \$0.684/\$3.42 to
+  \$0.60/\$3.41 per million tokens, and `google/gemma-4-31b-it` dropped
+  from \$0.14/\$0.40 to \$0.10/\$0.34 (#909).
+
+**Fixed**
+
+- Fleet: leader agent now receives a role-appropriate prior-findings
+  output contract in multi-round runs, instead of the specialist-role
+  contract it was inadvertently getting (#906).
+
+## 26.07.09 — 2026-07-30
+
+**Added**
+
+- **Memory that follows your agents.** ATX now runs a full memory
+  lifecycle: user chats and reviews are captured into a changelog
+  store, refinement promotes durable memories out of that store, and
+  every agent gets its relevant memories injected into its system
+  prompt on each run. As the agent set changes, the memory pool is
+  reallocated so each agent stays under budget. Retention rules quietly
+  clean up stale entries (#866, #868, #869, #870, #871, #872, #873,
+  #876, #884).
+- **"Remember this" fast-track.** The `remember_this` MCP tool
+  promotes something to memory synchronously — no refinement wait, no
+  LLM hop. Bind it to an agent name and it lands as an
+  approved-and-attached memory on the next agent invocation (#869).
+- **Cumulative memory chart on the dashboard.** The memory page shows
+  how captured vs. approved memory has accumulated over time so you
+  can see the promotion funnel at a glance (#867).
+- **One canonical review render everywhere.** CLI, dashboard, and MCP
+  now all share a single render pipeline, ending format drift between
+  surfaces (#889, #892, #896).
+- **Chained review iterations.** Repeat rounds of the same review
+  carry a stable `review_id` so iteration history reads as one review
+  with rounds, and findings from earlier passes stay visible in later
+  ones (#781, #860, #895).
+- **One-click in-place upgrade.** When a new ATX release is available,
+  the dashboard shows an upgrade banner with an install button — no
+  more copying commands into a terminal (#709, #863).
+- **Copy Trace on task detail.** Click once to copy the full task
+  trace from the dashboard for pasting into a bug report or handoff
+  (#801, #861).
+- **Unified OpenAI-family routing.** OpenAI, Azure OpenAI, and any
+  OpenAI-compatible endpoint share a single auth and routing path
+  (#886, #893).
+- **Refresh-pricing script gains `--write`, SKU-variant filter, and
+  cache-column drift detection**, and a bundled ATX-skill installer
+  now ships as `atx skill install|update|delete|print` (#716, #851,
+  #875, #898).
+
+**Changed**
+
+- Bundled model catalog re-priced against authoritative upstreams
+  (#865).
+
+**Fixed**
+
+- Dashboard: settings dark-mode repaired and theme toggle added
+  (#758).
+- MCP/hook: worktree-aware review path plus a CLI fallback so
+  reviews still run when the MCP surface isn't wired in the current
+  session (#850, #862).
+- Bedrock: SSO/profile/env AWS credentials accepted in bedrock sync
+  pre-flight; Anthropic Bedrock version tail stripped so cost isn't
+  \$0 (#849, #852, #853).
+
+## 26.07.08 — 2026-07-30
+
+Released and immediately re-cut. `26.07.08` was tagged without the
+`internal/releasenotes/releases/26.07.08/ReleaseNotes.md` bundled into
+the binary, so users on `26.07.08` see `26.07.07`'s notes on
+`/dashboard/release-notes`. `26.07.09` re-cuts from the same source
+tree with the paperwork in place. See `26.07.09` for the actual
+shipped content.
+
 ## 26.07.07 — 2026-07-23
 
 **Added**
