@@ -31,6 +31,7 @@ atx server stop && atx server start
 |---|---|---|
 | [Anthropic](/providers/anthropic) | Claude Code subscribers or Anthropic API users | `claude login` or API key |
 | [AWS](/providers/aws) | AWS-native accounts using Bedrock-hosted models | Access keys or shared AWS config / SSO |
+| [CoralBricks](/providers/coralbricks) | CoralBricks hosted inference (OpenAI-compatible) | API key |
 | [Gemini](/providers/gemini) | Google Gemini API | API key |
 | [Groq](/providers/groq) | Groq low-latency inference | API key |
 | [Lilac](/providers/lilac) | Lilac hosted API (`api.getlilac.com`) | API key |

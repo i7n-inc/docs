@@ -11,6 +11,36 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.08.02 — 2026-08-03
+
+**Added**
+
+- **CoralBricks as an inference provider.** Add CoralBricks from the
+  dashboard's Add Provider dropdown or via the CLI with a
+  `CORALBRICKS_API_KEY` (or `CORAL_API_KEY` alias). CoralBricks-hosted
+  models route through the standard OpenAI-format factory and appear
+  alongside your other providers in the models list. No bundled
+  catalog — `atx provider sync coralbricks` fetches every model your
+  key exposes, and `atx project init --provider=coralbricks` requires
+  `--model=<slug>` (mirrors `litellm` / `ollama`) (#913). See the
+  [CoralBricks provider guide](/providers/coralbricks).
+
+**Fixed**
+
+- Fleet: bind `{{.Standards}}` on the specialist prompt so specialists
+  actually receive the diff; dashboard gains a provider filter on the
+  models settings page (#921).
+- Fleet + review: expand specialist instruction diffs, closing the
+  second prompt path for #914 (#920).
+- Models: infer `Lab` from bare slug prefixes for hosted providers so
+  CoralBricks-routed models classify correctly (#919).
+- Dashboard: replace CoralBricks icon with the real logo from the
+  vendor site (#918).
+- Dashboard: add CoralBricks to the Add Provider dropdown — closes the
+  #766 miss (#917).
+- Fleet: retire prior findings once a specialist hits the pass ceiling
+  (#916, closes #915).
+
 ## 26.08.01 — 2026-08-01
 
 **Added**

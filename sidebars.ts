@@ -24,6 +24,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'providers/anthropic',
         'providers/aws',
+        'providers/coralbricks',
         'providers/gemini',
         'providers/groq',
         'providers/lilac',
