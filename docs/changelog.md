@@ -11,6 +11,23 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.08.04 — 2026-08-10
+
+**Added**
+
+- AWS Bedrock now supports five approved OpenAI GPT models through Bedrock
+  Mantle Responses, using a Bedrock API key or `AWS_BEARER_TOKEN_BEDROCK`.
+- Review and task detail pages show distinct participating-agent counts.
+- Dashboard model, provider, and project-agent surfaces now use accessible
+  provider and lab identities.
+
+**Fixed**
+
+- Bedrock `openai.gpt-*` models now use Mantle during project initialization as
+  well as normal review execution.
+- Review-group descriptions render completely as safe GitHub-flavored
+  Markdown.
+
 ## 26.08.03 — 2026-08-09
 
 **Breaking**

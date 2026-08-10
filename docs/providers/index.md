@@ -41,7 +41,7 @@ atx server stop && atx server start
 | Provider | Supported labs | Setup |
 |---|---|---|
 | [Anthropic](/providers/anthropic) | Anthropic | `claude login` or API key |
-| [AWS](/providers/aws) | Alibaba, Amazon, Anthropic, MiniMaxAI, MoonshotAI, ZAI | Access keys or shared AWS config / SSO |
+| [AWS](/providers/aws) | Alibaba, Amazon, Anthropic, MiniMaxAI, MoonshotAI, OpenAI, ZAI | AWS credentials / SSO or Bedrock API key |
 | [CoralBricks](/providers/coralbricks) | MoonshotAI, ZAI | API key |
 | [Gemini](/providers/gemini) | Google | API key |
 | [Lilac](/providers/lilac) | MiniMaxAI, MoonshotAI, ZAI | API key |
@@ -51,4 +51,4 @@ atx server stop && atx server start
 | [OpenRouter](/providers/openrouter) | Alibaba, Amazon, Anthropic, Cohere, DeepSeek, Google, Meta, MiniMaxAI, Mistral, MoonshotAI, NVIDIA, OpenAI, xAI, ZAI | API key |
 
 Groq and Together credential connectors exist, but they have no approved
-catalog rows in ATX 26.08.03 and are not currently routable.
+catalog rows in ATX 26.08.04 and are not currently routable.
