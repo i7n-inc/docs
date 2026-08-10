@@ -60,12 +60,14 @@ To inspect the local catalog entry that ATX has for Bedrock models, run:
 atx provider models list bedrock
 ```
 
-For known Anthropic Bedrock ARNs, the catalog can show lab, context
-window, thinking support, and bundled pricing metadata.
+The catalog shows the exact release-approved rows from Anthropic, Amazon,
+Alibaba, MiniMaxAI, MoonshotAI, and ZAI. See the
+[AWS provider guide](/providers/aws#supported-models) for the full matrix.
 
 ## 7. Know the Bedrock cost caveat
 
-Review-time cost still reports `0` for Bedrock-backed runs because the
-Claude CLI subprocess does not return billing data. Use AWS billing for
-actual spend, and use the ATX dashboard for review flow and catalog
-inspection.
+Anthropic Bedrock runs report zero review-time cost because the Claude CLI
+subprocess does not return billing data. Non-Anthropic Bedrock models use the
+Converse path and support ATX cost accounting when catalog pricing is known.
+Use AWS billing for actual spend, and use the ATX dashboard for review flow and
+catalog inspection.

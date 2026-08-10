@@ -16,8 +16,9 @@ ATX runs on **macOS** and **Linux**. Windows is out of scope.
   from [cli.github.com](https://cli.github.com/) and authenticate with
   `gh auth login`.
 - **A supported LLM provider** — Anthropic API key, an active `claude
-  login` session, an OpenAI/Codex account, AWS Bedrock credentials, or a
-  reachable LiteLLM proxy. See [Providers](/providers).
+  login` session, an OpenAI API key or ChatGPT/Codex subscription
+  authenticated through the `openai` provider, AWS Bedrock credentials,
+  or a reachable LiteLLM proxy. See [Providers](/providers).
 - **Git** — for repositories ATX reviews.
 
 ## Install

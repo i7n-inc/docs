@@ -16,8 +16,8 @@ ATX uses AWS Bedrock as the model surface for AWS-hosted models.
 
 - model access is through Bedrock
 - project initialization can be pinned with `atx project init --provider=bedrock`
-- the model catalog covers multiple Bedrock vendors, including Anthropic,
-  Amazon Nova, Meta Llama, Mistral, Cohere, AI21, and DeepSeek
+- the model catalog contains 12 approved aliases from Anthropic, Amazon,
+  Alibaba, MiniMaxAI, MoonshotAI, and ZAI
 - ATX uses two runtime paths today:
   - Anthropic models stay on the Claude CLI path
   - non-Anthropic Bedrock models use the in-process Bedrock Converse path
@@ -62,6 +62,56 @@ atx server stop && atx server start
 This path relies on the shared AWS credentials/config and SSO cache that
 the underlying tooling already knows how to read.
 
+## Supported models
+
+This is a static, vetted catalog. Models are added only after evaluations and
+integration testing pass for an ATX release. Bedrock's live model list does not
+expand it.
+
+### Alibaba lab
+
+| Model | Bedrock slug |
+|---|---|
+| Qwen3 Coder Next | `qwen.qwen3-coder-next` |
+
+### Amazon lab
+
+| Model | Bedrock slug |
+|---|---|
+| Nova 2 Lite | `us.amazon.nova-2-lite-v1:0` |
+
+### Anthropic lab
+
+| Model | Bedrock slug |
+|---|---|
+| Claude Haiku 4.5 | `us.anthropic.claude-haiku-4-5-20251001-v1:0` |
+| Claude Opus 4.8 | `us.anthropic.claude-opus-4-8` |
+| Claude Opus 5 | `us.anthropic.claude-opus-5` |
+| Claude Sonnet 4.6 | `us.anthropic.claude-sonnet-4-6` |
+| Claude Sonnet 5 | `us.anthropic.claude-sonnet-5` |
+
+### MiniMaxAI lab
+
+| Model | Bedrock slug |
+|---|---|
+| MiniMax M2.5 | `minimax.minimax-m2.5` |
+
+### MoonshotAI lab
+
+| Model | Bedrock slug |
+|---|---|
+| Kimi K2 Thinking | `moonshot.kimi-k2-thinking` |
+| Kimi K2.5 | `moonshotai.kimi-k2.5` |
+
+### ZAI lab
+
+| Model | Bedrock slug |
+|---|---|
+| GLM 4.7 | `zai.glm-4.7` |
+| GLM 5 | `zai.glm-5` |
+
+Run `atx provider models list bedrock` to inspect the installed catalog.
+
 ## Initialize a project on AWS
 
 ```bash
@@ -71,9 +121,8 @@ atx project init --provider=bedrock
 
 ## Notes
 
-- `atx provider models list bedrock` and the dashboard Models page now
-  show bundled metadata across supported Bedrock vendors, not just
-  Anthropic-hosted models.
+- `atx provider models list bedrock` and the dashboard Models page show the
+  same release-versioned Bedrock rows listed above.
 - Runtime behavior depends on the model family:
   - Anthropic on Bedrock still goes through the Claude CLI path, so review
     runs report `review_cost_usd=0` and you should reconcile cost in AWS.

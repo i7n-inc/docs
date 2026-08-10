@@ -30,7 +30,6 @@ least one:
 
 - `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN`
 - `CLAUDE_CODE_USE_BEDROCK=1` + `AWS_REGION` (Bedrock)
-- `CLAUDE_CODE_USE_VERTEX=1` + `ANTHROPIC_VERTEX_PROJECT_ID` (Vertex)
 - `~/.claude/.credentials.json` (via `claude login`)
 
 Then restart the daemon.
@@ -106,23 +105,23 @@ If status shows the daemon is stopped, run `atx server start` again.
 
 ## Bedrock cost looks incomplete
 
-Bedrock routes through the Claude CLI subprocess, so ATX may not receive
-provider-native token cost metadata for every run. Treat the dashboard's
-Bedrock cost fields as operational guidance, not billing truth. Use AWS
-Cost Explorer for billing reconciliation.
-
-If you are looking at the model catalog instead of review billing, this is
-expected: catalog pages can now show Bedrock lab/pricing/context metadata
-for known Anthropic ARNs even though review-time cost still reports `0`.
+Anthropic Bedrock models use the Claude CLI subprocess, which does not return
+provider-native billing data; those runs report zero review cost. Non-Anthropic
+Bedrock models use the Converse path and support ATX cost accounting when the
+catalog has pricing. Use AWS Cost Explorer as billing truth for both paths.
 
 ## LiteLLM proxy fails
 
-Confirm the proxy base URL and model slug before initializing the project:
+Re-add the proxy, register the exact slug, and confirm that it appears in the
+local catalog before initializing the project:
 
 ```bash
-curl -sS "$LITELLM_BASE_URL/health"
+atx provider add litellm --base-url "$LITELLM_BASE_URL" [--api-key "$LITELLM_API_KEY"]
+atx model add litellm <model-slug> [--lab <lab>]
+atx provider models list litellm
 atx project init --provider=litellm --model=<model-slug> --force
 ```
 
-If the proxy requires authentication, export `LITELLM_API_KEY`, restart
-the daemon, then retry the review.
+Provider registration validates the configured endpoint through `/v1/models`
+but does not import its response. If the proxy requires authentication, export
+`LITELLM_API_KEY`, restart the daemon, then retry the review.

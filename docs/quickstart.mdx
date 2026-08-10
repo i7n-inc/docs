@@ -39,17 +39,19 @@ automatically.
 </details>
 
 <details>
-<summary><strong>Option C — OpenAI Codex (ChatGPT subscription)</strong></summary>
+<summary><strong>Option C — OpenAI (ChatGPT / Codex subscription)</strong></summary>
 
 ```bash
 atx provider add openai        # browser OAuth (PKCE)
 ```
 
-Then, at project init: `atx project init --provider=codex`.
+Then, at project init: `atx project init --provider=openai`. Subscription
+OAuth and API-key routing share the same `openai` provider identity.
 </details>
 
-More options (Bedrock, LiteLLM, Gemini, Ollama, Groq) live in
-[Providers and Authentication](/providers).
+More options (Bedrock, LiteLLM, Gemini, Ollama, OpenRouter, Lilac, and
+CoralBricks) live in [Providers and Authentication](/providers). Each provider
+guide lists its supported labs, models, and exact slugs.
 
 ## 2. Start the daemon
 

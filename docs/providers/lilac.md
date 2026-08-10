@@ -15,18 +15,40 @@ atx provider add lilac --api-key ...
 ```
 
 - Base URL defaults to `https://api.getlilac.com/v1` (OpenAI-compatible).
-- API-key provider with per-token billing — synced rows report real
-  `cost_usd` for each review.
+- API-key provider with per-token billing where catalog pricing is available.
 - Accepts optional `--base-url` if you point at a compatible gateway.
 
-Model discovery:
+## Supported models
+
+This is a static, vetted catalog. Models are added only after evaluations and
+integration testing pass for an ATX release. Lilac's live model list does not
+expand it.
+
+### MiniMaxAI lab
+
+| Model | Provider slug |
+|---|---|
+| MiniMax M3 | `minimaxai/minimax-m3` |
+
+### MoonshotAI lab
+
+| Model | Provider slug |
+|---|---|
+| Kimi K2.6 | `moonshotai/kimi-k2.6` |
+
+### ZAI lab
+
+| Model | Provider slug |
+|---|---|
+| GLM 5.2 | `zai-org/glm-5.2` |
+
+Inspect the installed rows with:
 
 ```bash
-atx provider sync lilac
+atx provider models list lilac
 ```
 
-ATX ships a bundled Lilac catalog snapshot for offline init; `sync`
-refreshes it against the live `/models` endpoint.
+The live `/models` response is not imported.
 
 :::caution[Restart the daemon after adding credentials]
 ```bash

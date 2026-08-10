@@ -44,8 +44,8 @@ Common flags:
 
 | Flag | Purpose |
 |---|---|
-| `--provider=<name>` | Force a specific provider (`anthropic`, `codex`, `bedrock`, `litellm`, ...) |
-| `--model=<slug>` | Force a specific model slug (required with `--provider=litellm`) |
+| `--provider=<name>` | Force a catalog-enabled provider (`anthropic`, `openai`, `bedrock`, `litellm`, ...) |
+| `--model=<slug>` | Force an exact provider slug; required for LiteLLM, Ollama, and CoralBricks |
 | `--force` | Regenerate the fleet from scratch |
 
 Re-run with `--force` when your codebase has changed enough that the
@@ -81,16 +81,18 @@ See [Specialists](/specialists) for more detail and a real fleet example.
 
 ## Project-wide model override
 
-Hand-edit `~/.config/atx/projects/<encoded-path>/config.yaml`:
+Use a provider-specific slug from its [provider guide](/providers):
 
-```yaml
-provider:
-  model: anthropic.claude-sonnet-4-6
+```bash
+atx project set-model claude-sonnet-4-6
 ```
 
-Applied to every system-generated agent on the next
-`atx project init --force`; survives `--force`. User-overridden rows
-keep their explicit model.
+This updates every system-generated agent in the current project. Explicitly
+overridden and custom agents remain unchanged unless you pass
+`--include-overridden`.
+
+Before using a LiteLLM or Ollama slug, register it with
+`atx model add <provider> <slug>`.
 
 ATX also writes project integration state under `.itx/` and refreshes it
 on `atx project init --force`.

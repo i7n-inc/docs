@@ -66,8 +66,8 @@ atx project agents rematch
 
 ## Re-match model choices
 
-If your catalog changed or you want ATX to pick better-fit models for the
-existing fleet, run:
+After upgrading ATX, registering an Ollama or LiteLLM model, or deciding you
+want ATX to pick better-fit models for the existing fleet, run:
 
 ```bash
 atx project agents rematch

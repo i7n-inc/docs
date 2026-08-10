@@ -41,6 +41,26 @@ ATX also accepts `ANTHROPIC_AUTH_TOKEN`.
 Use this path when you want direct Anthropic API routing with standard
 request billing.
 
+## Supported models
+
+This is a static, vetted catalog. Models are added only after evaluations and
+integration testing pass for an ATX release.
+
+### Anthropic lab
+
+| Model | Provider slug |
+|---|---|
+| Claude Fable 5 | `claude-fable-5` |
+| Claude Haiku 4.5 | `claude-haiku-4-5-20251001` |
+| Claude Opus 4.8 | `claude-opus-4-8` |
+| Claude Opus 5 | `claude-opus-5` |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
+| Claude Sonnet 5 | `claude-sonnet-5` |
+
+Provider setup validates credentials; it does not import Anthropic's complete
+model list. Run `atx provider models list anthropic` to inspect the installed
+catalog.
+
 :::caution[Restart the daemon after exporting]
 ```bash
 atx server stop && atx server start

@@ -18,8 +18,8 @@ Once the daemon is running, the dashboard is at
   session count. Drill in for agents and sessions per project.
 - **Reviews** — cross-project review groups sorted by most recent.
 - **Memories** — approved + applied learnings across projects.
-- **Models** — flat model catalog scoped to configured providers, with lab
-  filtering and provider details.
+- **Models** — flat model catalog scoped to authenticated providers that have
+  catalog rows, with lab filtering and provider details.
 - **Session detail** — full conversation logs and Mermaid sequence
   diagrams for each review.
 
@@ -43,7 +43,7 @@ project page:
 - model detail links jump into the catalog page with the matching model
   preselected
 
-If a project has no configured providers yet, the rematch flow shows an
+If a project has no authenticated, catalog-enabled providers yet, the rematch flow shows an
 empty state that points you back to provider setup instead of offering
 labs that ATX cannot actually route to.
 
@@ -71,7 +71,8 @@ The models view is now a flat catalog instead of provider tabs.
 
 - filter by upstream lab with the `All labs` dropdown
 - inspect one row per provider-carried model
-- the catalog is scoped to providers you have actually configured in ATX
+- the catalog is the intersection of authenticated providers and SQLite
+  catalog rows
 - open the row to see context window, pricing, thinking support,
   sampling defaults, and other metadata
 - use it as the source of truth when you want to understand what ATX can
@@ -79,5 +80,6 @@ The models view is now a flat catalog instead of provider tabs.
 
 The current page is useful for both operators and reviewers: it shows the
 same catalog ATX uses for routing, including provider-specific coverage of
-the same upstream family. If you have zero configured providers, the page
-shows an empty-state CTA instead of a misleading global catalog.
+the same upstream family. If you have zero authenticated, catalog-enabled
+providers, the page shows an empty-state CTA instead of a misleading global
+catalog. Credential-only connectors with no approved rows do not appear.

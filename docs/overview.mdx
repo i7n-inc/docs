@@ -37,8 +37,8 @@ things:
 2. **Optimizes models for your project** — ATX inspects each repo,
    generates a purpose-built agent fleet, and lets you route different
    review roles to the provider and model that actually fit the project
-   (Claude Code, Anthropic, Codex, Bedrock, LiteLLM, or a local Ollama
-   model).
+   (Anthropic, OpenAI through an API key or ChatGPT/Codex subscription,
+   Bedrock, LiteLLM, or a local Ollama model).
 3. **Collects memories from local work** — resolved issues, reviewer
    feedback, and recurring patterns feed ATX's memory store, so future
    reviews reference your codebase's real conventions instead of generic
@@ -54,7 +54,7 @@ returns structured, actionable feedback.
   after a PR is opened.
 - Teams that want consistent enforcement of house rules without
   hand-writing another linter.
-- Anyone using Claude Code, OpenAI Codex, Bedrock, or a LiteLLM proxy who
+- Anyone using Claude Code, OpenAI, Bedrock, or a LiteLLM proxy who
   wants an agentic quality gate in front of their commits.
 
 ## How ATX works
@@ -99,5 +99,4 @@ the rating clears the merge gate. Only then does the commit land.
 - [Installation](/installation) — install ATX on macOS or Linux.
 - [Quickstart](/quickstart) — from install to your first successful
   review in under 10 minutes.
-- [Providers and Authentication](/providers) — connect Anthropic,
-  Bedrock, Codex, or LiteLLM.
+- [Providers and Authentication](/providers) — configure authentication.

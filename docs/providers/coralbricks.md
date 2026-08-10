@@ -31,19 +31,30 @@ atx server stop && atx server start
 ```
 :::
 
-## No bundled catalog
+## Approved models
 
-CoralBricks has no bundled model catalog — the model list is fully
-dynamic. Run `atx provider sync coralbricks` to fetch every model your
-key exposes via `GET /v1/models`. There is no allowlist prune;
-re-syncing reflects any account-side enable/disable change on the
-next run.
+This is a static, vetted catalog. Models are added only after evaluations and
+integration testing pass for an ATX release. Credential validation may probe
+`/v1/models`, but the response is not imported into the catalog.
 
-Because the catalog is dynamic, `atx project init --provider=coralbricks`
-requires `--model=<slug>` (mirrors `litellm` / `ollama`):
+### MoonshotAI lab
+
+| Model | Provider slug |
+|---|---|
+| Kimi K3 | `kimi-k3` |
+
+### ZAI lab
+
+| Model | Provider slug |
+|---|---|
+| GLM 5.2 | `glm-5.2-fp4` |
+
+Choose one of the approved slugs explicitly:
 
 ```bash
 atx provider add coralbricks --api-key <key>
-atx provider sync coralbricks
-atx project init --provider=coralbricks --model=<slug>
+atx provider models list coralbricks
+atx project init --provider=coralbricks --model=kimi-k3
 ```
+
+Run `atx provider models show coralbricks <slug>` for full catalog metadata.

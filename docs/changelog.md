@@ -11,7 +11,48 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.08.03 — 2026-08-09
+
+**Breaking**
+
+- **Model discovery is now release-versioned and deterministic.** ATX uses a
+  bundled SQLite catalog instead of fetching and caching provider model lists.
+  Provider sync, model-cache commands, and custom model slugs in `auth.json`
+  have been removed. Register self-hosted Ollama and LiteLLM models through the
+  model-management flow.
+- **OpenAI and Codex now share one provider path.** Subscription-backed Codex
+  authentication remains available through `atx provider add openai`, and all
+  model selection uses `provider=openai`.
+
+**Added**
+
+- A release-versioned approved-model catalog covering Bedrock, OpenRouter,
+  Lilac, CoralBricks, Anthropic, OpenAI, Gemini, Ollama, and LiteLLM, with alias
+  resolution and offline seed data.
+- User-managed model registration for self-hosted Ollama and LiteLLM
+  deployments.
+- A Provider filter on Projects → Agents, limited to providers that are both
+  authenticated and present in the catalog.
+- Shared credential validation across CLI and dashboard provider registration.
+
+**Changed**
+
+- Model pricing now ships with each release, and historical zero-cost records
+  are backfilled through the same catalog-backed pricing path.
+- Model selection and catalog views are provider-specific and deterministic.
+
+**Fixed**
+
+- Restored the project settings tab.
+- Strengthened Bedrock drift detection, end-to-end catalog checks, and pricing
+  backfill verification.
+
 ## 26.08.02 — 2026-08-03
+
+:::note[Superseded by 26.08.03]
+The CoralBricks sync workflow below describes 26.08.02. Current releases use
+the deterministic catalogs documented in each [provider guide](/providers).
+:::
 
 **Added**
 

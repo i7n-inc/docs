@@ -28,5 +28,12 @@ for the full flag list.
 | `atx review` | Review session changes (via Claude Code hook) |
 | `atx review request --prompt "..."` | On-demand review with custom prompt |
 | `atx provider add <name>` | Add a provider |
-| `atx provider sync <name>` | Refresh a provider's model list (e.g. LiteLLM) |
-| `atx provider models list [<provider>]` | Inspect the model catalog for one provider or by upstream lab |
+| `atx provider models list [<provider>]` | List SQLite catalog rows, optionally for one provider |
+| `atx provider models list --lab <lab>` | List catalog rows from one upstream model lab |
+| `atx provider models show <provider> <slug>` | Inspect one provider-specific catalog row |
+| `atx model add <ollama\|litellm> <slug> [--lab <lab>]` | Register a model for a user-managed provider |
+
+Vetted-provider models are release-versioned. `atx provider sync` was removed;
+upgrading ATX updates the vetted catalog, while Ollama and LiteLLM models are
+managed with `atx model add`. Each [provider guide](/providers) lists its labs,
+models, and exact slugs.

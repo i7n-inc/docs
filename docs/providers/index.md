@@ -10,11 +10,22 @@ ATX supports multiple LLM providers. Credentials live at
 `~/.config/atx/auth.json` (mode `0600`). The daemon auto-detects
 providers at start time using this priority when picking a default:
 
-**Claude CLI → Codex OAuth → `ANTHROPIC_API_KEY` → `OPENAI_API_KEY`**
+**Claude CLI → OpenAI OAuth/subscription → `ANTHROPIC_API_KEY` → `OPENAI_API_KEY`**
 
-Note: all configured providers are enumerated for best-fit selection at
-review time; the tie-breaker above only decides the default when nothing
-is specified.
+Only providers that are both authenticated **and** represented in the model
+catalog are available for routing. The tie-breaker above only decides the
+default when nothing is specified. Each provider guide lists its supported
+labs, model names, and exact provider slugs.
+
+:::info[Static and vetted by default]
+Model lists for Anthropic, OpenAI, Gemini, AWS Bedrock, OpenRouter, Lilac, and
+CoralBricks are static, vetted release data. ATX updates them only after model
+evaluations and integration testing pass for a release. A provider's live
+`/models` response does not expand this allowlist.
+
+Only LiteLLM and Ollama model sets vary by installation. You register those
+models explicitly with `atx model add`; ATX does not auto-import them.
+:::
 
 :::caution[Restart the daemon after adding env vars]
 The daemon captures its environment at `atx server start`. Any credential
@@ -27,16 +38,17 @@ atx server stop && atx server start
 
 ## Pick a provider
 
-| Provider | Best for | Setup |
+| Provider | Supported labs | Setup |
 |---|---|---|
-| [Anthropic](/providers/anthropic) | Claude Code subscribers or Anthropic API users | `claude login` or API key |
-| [AWS](/providers/aws) | AWS-native accounts using Bedrock-hosted models | Access keys or shared AWS config / SSO |
-| [CoralBricks](/providers/coralbricks) | CoralBricks hosted inference (OpenAI-compatible) | API key |
-| [Gemini](/providers/gemini) | Google Gemini API | API key |
-| [Groq](/providers/groq) | Groq low-latency inference | API key |
-| [Lilac](/providers/lilac) | Lilac hosted API (`api.getlilac.com`) | API key |
-| [LiteLLM](/providers/litellm) | Self-hosted proxy fronting many models | Base URL + optional API key |
-| [Ollama](/providers/ollama) | Local inference | Base URL |
-| [OpenAI](/providers/openai) | ChatGPT / Codex subscribers or direct OpenAI API users | Browser OAuth or API key |
-| [OpenRouter](/providers/openrouter) | Model marketplace via OpenAI-compatible API | API key |
-| [Together](/providers/together) | Together AI hosted open models | API key |
+| [Anthropic](/providers/anthropic) | Anthropic | `claude login` or API key |
+| [AWS](/providers/aws) | Alibaba, Amazon, Anthropic, MiniMaxAI, MoonshotAI, ZAI | Access keys or shared AWS config / SSO |
+| [CoralBricks](/providers/coralbricks) | MoonshotAI, ZAI | API key |
+| [Gemini](/providers/gemini) | Google | API key |
+| [Lilac](/providers/lilac) | MiniMaxAI, MoonshotAI, ZAI | API key |
+| [LiteLLM](/providers/litellm) | User-managed | Base URL + optional API key |
+| [Ollama](/providers/ollama) | User-managed | Base URL |
+| [OpenAI](/providers/openai) | OpenAI | Browser OAuth or API key |
+| [OpenRouter](/providers/openrouter) | Alibaba, Amazon, Anthropic, Cohere, DeepSeek, Google, Meta, MiniMaxAI, Mistral, MoonshotAI, NVIDIA, OpenAI, xAI, ZAI | API key |
+
+Groq and Together credential connectors exist, but they have no approved
+catalog rows in ATX 26.08.03 and are not currently routable.
