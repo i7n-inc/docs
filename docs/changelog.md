@@ -11,6 +11,25 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.08.05 — 2026-08-15
+
+**Breaking**
+
+- **`POST /api/learnings/generate` is fully retired.** The endpoint's
+  deprecation window closed; it now returns a standard `404 Not Found`
+  instead of the temporary `410 Gone`. If you built external tooling against
+  it, migrate to the captured-input and explicit memory APIs.
+
+**Fixed**
+
+- **Session teardown is idempotent.** Repeated Claude Code `Stop`-hook
+  invocations for the same session now return `already_ended` instead of
+  failing, while stale-session mismatches remain rejected so a late hook
+  from a prior session cannot mutate your active one.
+- **No more spurious 404s in hook output at session end.** The client
+  stopped calling the retired learning-generation endpoint when sessions
+  close, so the noise you may have seen after a session wraps is gone.
+
 ## 26.08.04 — 2026-08-10
 
 **Added**
