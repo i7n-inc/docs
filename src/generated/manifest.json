@@ -1,0 +1,10 @@
+{
+  "version": "26.09.00",
+  "released_at": "2026-09-09T03:39:55Z",
+  "checksums": {
+    "darwin-amd64": "ec490829357218dd319c2b1a4cd2752c9790de7fa5055f4524b6cd63e329e33d",
+    "darwin-arm64": "1007174dc8665d344a5046434533523da74fe8e2df73deae69e9e847fa990905",
+    "linux-amd64": "eed8b5b0a97256f244b90a6c166b7091d17d1c84fab2b514ce98746045f26b9b",
+    "linux-arm64": "659006d926d1b819d7ad7abd8519440ab72cff9270a5e60047e3ffe015fa94e6"
+  }
+}

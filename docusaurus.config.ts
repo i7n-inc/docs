@@ -31,6 +31,12 @@ const config: Config = {
     locales: ['en'],
   },
 
+  clientModules: ['./src/posthog.ts'],
+  customFields: {
+    posthogKey: process.env.POSTHOG_KEY,
+    posthogHost: process.env.POSTHOG_HOST || 'https://us.i.posthog.com',
+  },
+
   presets: [
     [
       'classic',
@@ -66,6 +72,11 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
+        {
+          to: '/downloads',
+          position: 'left',
+          label: 'Downloads',
+        },
       ],
     },
     footer: {
@@ -76,6 +87,7 @@ const config: Config = {
           items: [
             {label: 'Overview', to: '/'},
             {label: 'Quickstart', to: '/quickstart'},
+            {label: 'Downloads', to: '/downloads'},
             {label: 'Troubleshooting', to: '/troubleshooting'},
           ],
         },
