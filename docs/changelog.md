@@ -11,6 +11,58 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.09.01 — 2026-09-11
+
+**Breaking**
+
+- **Legacy Learning refinement API removed.** `POST /api/projects/{projectId}/memory/{learningId}/refine`,
+  `GET .../refinement-history`, and the `Learning.target_agent_id`,
+  `target_confidence`, and `target_rationale` fields are gone with no
+  replacement. External clients that were still calling them must stop.
+
+**Added**
+
+- **Workspace Knowledge Graph.** A dashboard-wide view of how your fleet
+  is building knowledge across every project — 14-day rolling activity
+  for approved Knowledge Nodes and completed Reviews, plus token spend
+  broken out by project.
+- **Per-project knowledge summary and graph.** Each project now has its
+  own knowledge growth card and a project-scoped agent knowledge graph,
+  so you can see which agents are learning and which projects are
+  compounding fastest.
+- **Refine and apply Learnings project-wide.** Review, refine, and apply
+  Learnings across a whole project instead of one agent at a time.
+- **Funnel dashboard.** A new funnel view (with GitHub-API backfill) that
+  tracks how projects move through onboarding into steady-state use.
+
+**Changed**
+
+- **Bundled pricing catalog refreshed.** Full reconciliation against
+  vendor pricing pages. Three vendor-deprecated models removed
+  (`moonshotai/kimi-k2.5`, `zai/glm-4.7`, `alibaba/qwen3.8-max`) — if
+  your agents were configured on any of these, reassign them to a
+  current model. Newer AWS Bedrock models (Claude 4.5/4.8/5, GPT-5.x on
+  Bedrock) and third-party proxy hosts (coralbricks, lilac) now price
+  against a curated overrides file where AWS's public feed or
+  aggregators fall short. Pin counts: canonicals 42 → 39, vetted
+  aliases 80 → 74.
+- **Memory refinement scheduler on by default.** The nightly refinement
+  job now runs unless you explicitly disable it. Changelog axis is
+  leader-aware.
+
+**Fixed**
+
+- **`atx serve --config` propagates to the daemon.** Detaching the
+  daemon no longer drops the config path passed on the command line.
+- **OpenAI Responses-API JSON mode works cleanly.** Fixed the guard
+  that rejected valid `RequireJSON` requests against the Responses API.
+- **Every priced model ships with a real rate.** Closed the last of the
+  nil-pricing gaps — cost previews and totals stop rendering blanks or
+  "$0.00" for commercial models.
+- **Dashboard chrome polish.** Consistent chrome across project tabs;
+  knowledge graph navigation behaves predictably as you move between
+  scopes.
+
 ## 26.08.05 — 2026-08-15
 
 **Breaking**
