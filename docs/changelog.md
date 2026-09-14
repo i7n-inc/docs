@@ -45,6 +45,31 @@ on the ATX repo.
   temporarily reverted, so cost and outcome dashboards show complete
   data again.
 
+## 26.09.00 — 2026-09-09
+
+**Fixed**
+
+- **Self-updates download correctly.** Fixed a case where `atx update`
+  could not find the versioned release binary and returned a 404 error.
+
+## 26.08.06 — 2026-09-09
+
+**Added**
+
+- **Download updates from GitHub.** Release binaries, checksums, and
+  update metadata are now mirrored to the public
+  [`i7n-inc/atx-releases`](https://github.com/i7n-inc/atx-releases)
+  repository, and `atx update` pulls from those GitHub downloads —
+  easier to inspect and verify than the previous distribution path.
+- **Refreshed dashboard branding.** The sidebar now includes the
+  iteration.sh logo.
+
+**Fixed**
+
+- **Bedrock credentials work more reliably.** Fixed a case where
+  Bedrock requests could not sign with credentials provided through
+  AWS SSO, instance metadata, or assumed roles.
+
 ## 26.09.01 — 2026-09-11
 
 **Breaking**
