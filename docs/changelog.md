@@ -11,6 +11,42 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.09.03 — 2026-09-15
+
+**Added**
+
+- **Bedrock GPT via static AWS credentials.** You can now run ATX against
+  GPT models on Amazon Bedrock end-to-end using isolated static AWS SigV4
+  credentials, from onboarding through review. Missing or partial
+  credentials fail closed with a clear reason.
+- **Cost & Economics PostHog dashboard.** A new maintainer dashboard
+  surfaces where fleet spend is going across your projects and agents.
+- **Activation & Instrumentation Health PostHog dashboard.** Weekly and
+  daily active installs plus instrumentation coverage, so you can see
+  adoption at a glance.
+
+**Changed**
+
+- **Reviews attach to the right parent.** The old four-hour project-wide
+  fallback that grouped unrelated sessions into one Review is gone.
+  Reviews now match by objective within a bounded window; uncertain
+  matches create a new Review rather than grafting onto the wrong one.
+  Review titles now come from the objective, so the CLI and dashboard
+  lists read cleanly.
+
+**Fixed**
+
+- **Bedrock authentication is consistent everywhere.** Whether ATX
+  reaches Bedrock through the Claude CLI, Converse, or Mantle, it uses
+  the same AWS credential resolution — full SDK default chain, SSO, IAM
+  roles, and profile-derived regions all work, and persisted values win
+  over ambient environment. Failures now surface the actual
+  credential-chain error.
+- **Leader reviews fail closed on missing evidence.** When a specialist
+  is missing, renamed, or failed, the leader emits a clear reason
+  instead of a partial synthesis. Malformed output is rejected the same
+  way.
+
 ## 26.09.02 — 2026-09-14
 
 **Added**
