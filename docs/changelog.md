@@ -11,6 +11,37 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.09.04 — 2026-09-15
+
+**Added**
+
+- **Persisted global Bedrock AWS profile.** Save a named AWS profile
+  as the global Bedrock selector through
+  `atx provider add bedrock --profile <name>` or the dashboard, and
+  every Bedrock call will use it. Switching between static
+  credentials and a profile is atomic — no half-configured state —
+  and the CLI redacts the value everywhere it is displayed back.
+
+**Fixed**
+
+- **Persisted Bedrock profile honored across every path.** All three
+  Bedrock invocation paths and the live probe now resolve the
+  persisted profile through the shared AWS credential chain, respect
+  custom shared-file locations, and ignore hostile ambient selectors
+  that would otherwise leak in.
+- **Reviews grouped by meaning, not cosmetics.** The old lexical
+  grouping is gone. Reviews are now grouped by a leader-model
+  decision, and referenced issues or PRs are verified before ATX
+  attaches a review to an existing parent.
+- **Grouping oracle has a workable time budget.** The oracle now has
+  20s per call and 30s total. The previous 2s budget was unreachable
+  for the actual leader model, so every stateless review request
+  timed out and silently minted a new parent — the exact bug the
+  oracle was meant to fix.
+- **Costs and durations read cleanly.** Review costs render to two
+  decimal places and durations show as elapsed time in the CLI and
+  PR summaries. Raw values in the JSON envelopes are unchanged.
+
 ## 26.09.03 — 2026-09-15
 
 **Added**
