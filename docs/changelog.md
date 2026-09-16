@@ -11,6 +11,65 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.09.02 — 2026-09-14
+
+**Added**
+
+- **Anonymous install identity.** Fresh installs get a stable anonymous
+  identifier so aggregate adoption and reliability signals line up across
+  sessions before you connect an account. No personally identifiable
+  information is captured.
+
+**Changed**
+
+- **Workspace dashboard polish.** Cleaner chart typography and gridlines
+  on the knowledge-graph-growth chart, axis-value labels sit in fixed-width
+  boxes so numbers hug their axis lines, and header totals now carry small
+  color dots that match the chart series. The projects table reorders to
+  Project → Agents → Knowledge Nodes → Reviews → Review time (median) and
+  drops the global uppercase treatment; the Global Knowledge Graph table
+  is tuned to match.
+- **Pricing catalog refreshed.** Six OpenRouter-hosted models were
+  repriced to match live upstream: DeepSeek v4 Pro is up ~69% on input,
+  Kimi K3 is up ~47% on input, and NVIDIA Nemotron 3 Ultra dropped ~20%
+  on output. If any of your agents are pinned to DeepSeek v4 Pro or
+  Kimi K3, review your cost budgets. The other four models (DeepSeek v4
+  Flash, Llama 4 Maverick, GLM 5.2) moved by less than 15%.
+- **posthog-go upgraded to v1.25.1.** Routine dependency bump; no
+  behavior change.
+
+**Fixed**
+
+- **Telemetry hygiene restored.** Reinstated memory-approval,
+  task-terminal, and reviews-trend telemetry properties that had been
+  temporarily reverted, so cost and outcome dashboards show complete
+  data again.
+
+## 26.09.00 — 2026-09-09
+
+**Fixed**
+
+- **Self-updates download correctly.** Fixed a case where `atx update`
+  could not find the versioned release binary and returned a 404 error.
+
+## 26.08.06 — 2026-09-09
+
+**Added**
+
+- **Download updates from GitHub.** Release binaries, checksums, and
+  update metadata are now mirrored to the public
+  [`i7n-inc/atx-releases`](https://github.com/i7n-inc/atx-releases)
+  repository, and `atx update` pulls from those GitHub downloads —
+  easier to inspect and verify than the previous distribution path.
+- **Refreshed dashboard branding.** The sidebar now includes the
+  iteration.sh logo.
+
+**Fixed**
+
+- **Bedrock credentials work more reliably.** Fixed a case where
+  Bedrock requests could not sign with credentials provided through
+  AWS SSO, instance metadata, or assumed roles.
+
 ## 26.09.01 — 2026-09-11
 
 **Breaking**
