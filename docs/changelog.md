@@ -11,6 +11,45 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.09.05 — 2026-09-19
+
+**Breaking**
+
+- **`remember_this` MCP tool retired in favor of `add_learning`.** MCP
+  clients must switch from `remember_this` to `add_learning`. The
+  replacement takes the same inputs and returns the same fields, so the
+  migration is a rename. Raw-analytics consumers should remap
+  `approval_path="mcp_remember_this"` to `"mcp_add_learning"` and read
+  the new `atx_learning_*` lifecycle events.
+
+**Added**
+
+- **Learnings replace Memory across ATX.** The whole tool now speaks
+  Learnings end-to-end — in the CLI, the REST API, the MCP surface, the
+  Knowledge Graph UI, and inside the runtime itself. Existing data
+  carries over; the new vocabulary is what you'll see everywhere.
+- **`atx project learnings` command surface.** A canonical
+  `atx project learnings …` command group replaces the older
+  memory-named commands, with the same subcommands you already use:
+  `changelog`, `edit`, `migrate`, `settings`, `source`, `triage`, and
+  `why`.
+- **Learnings in the Knowledge Graph.** Agent, project, and global
+  knowledge graphs group Learnings as first-class nodes so you can see
+  what an agent has learned at a glance.
+- **New MCP `add_learning` tool.** External agents can capture Learnings
+  through a stable MCP contract with a documented telemetry stream.
+- **Cleaner PR bodies from ATX review.** When you ask for a review, ATX
+  now returns a ready-to-append PR summary block, so you don't have to
+  reconstruct it from raw output.
+
+**Fixed**
+
+- **`atx project init` no longer trips on OpenAI.** New OpenAI projects
+  initialize with a supported model out of the box.
+- **Fresh pricing for four OpenRouter models.** Cost estimates for
+  `deepseek-v4-flash`, `deepseek-v4-pro`, `kimi-k3`, and `glm-5.2` now
+  match what OpenRouter actually charges.
+
 ## 26.09.04 — 2026-09-15
 
 **Added**
