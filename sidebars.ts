@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
     'dashboard',
+    'telemetry',
     {
       type: 'category',
       label: 'Runbooks',

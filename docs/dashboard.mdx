@@ -21,8 +21,8 @@ The examples below use the Clawrium project.
 ![ATX dashboard with cost, model usage, memory, and task trends](/img/screenshots/dashboard-landing.png)
 
 The landing page summarizes review efficiency across every local project. It
-shows median cost and duration for successful tasks, cost by model, memory
-growth, and recent task throughput.
+shows median cost and duration for successful tasks, cost by model, Knowledge
+Graph growth, and recent task throughput.
 
 **Use this page to:** spot changes in review cost, speed, model mix, and learning
 activity at a glance.
@@ -32,8 +32,8 @@ activity at a glance.
 ![ATX projects table with status, ratings, reviews, memories, tokens, and cost](/img/screenshots/dashboard-projects.png)
 
 Projects lists every initialized workspace and its latest rating, review and
-memory counts, token usage, and cost. Select a project to move from fleet-wide
-metrics into its agents, reviews, memories, and settings.
+Knowledge Graph counts, token usage, and cost. Select a project to move from
+fleet-wide metrics into its agents, reviews, Knowledge Graph, and settings.
 
 **Use this page to:** compare project health and open the workspace you want to
 investigate.
@@ -43,8 +43,8 @@ investigate.
 ![Clawrium project summary with task, cost, duration, memory, and trend metrics](/img/screenshots/dashboard-project-summary.png)
 
 The project summary scopes the dashboard to one workspace. It combines
-successful-task totals, median cost and duration, accumulated spend, memory
-count, and project-specific trends.
+successful-task totals, median cost and duration, accumulated spend, Knowledge
+Graph count, and project-specific trends.
 
 **Use this page to:** establish a project's operating baseline before drilling
 into individual reviews or agents.
@@ -61,13 +61,18 @@ limited to labs available through configured providers.
 **Use this page to:** inspect model assignments, open an agent, add a custom
 specialist, or rematch the fleet.
 
+Each agent also has a Knowledge Graph tab with the approved Learning nodes
+attached to that agent. Filter it by source or search it to inspect the guidance
+available when ATX assembles later prompts.
+
 ## Project reviews
 
 ![Clawrium project reviews with status, task count, rating, cost, and duration](/img/screenshots/dashboard-project-reviews.png)
 
 Project reviews groups every review loop for the workspace and shows its latest
 status, member-task count, rating, total cost, and duration. Iterative
-`request_review` runs stay together instead of appearing as unrelated rows.
+requests group when ATX can verify that they share the same objective; requests
+with an ambiguous or different scope create a new review.
 
 **Use this page to:** find a review, compare iterations, and identify expensive
 or slow review loops.
@@ -84,15 +89,17 @@ descriptions render completely as safe GitHub-flavored Markdown.
 **Use this page to:** follow a review across iterations, inspect convergence,
 and open the exact task that found a blocker or changed the rating.
 
-## Project memories
+## Project Knowledge Graph
 
-![Clawrium project memory trend and approved learning activity](/img/screenshots/dashboard-project-memories.png)
+![Clawrium project Knowledge Graph with pending and approved Learnings](/img/screenshots/dashboard-project-memories.png)
 
-Project memories shows learning capture and approval trends for one workspace,
-recent activity, and the approved memories ATX can attach to later reviews.
+The project's Knowledge Graph lists every Learning for that workspace, including
+pending items awaiting review and approved items attached to an agent. Filter by
+status, target agent, or text, then approve or reject pending Learnings from the
+item details.
 
-**Use this page to:** confirm that project-specific lessons are being retained
-and reused.
+**Use this page to:** review captured guidance before it influences an agent and
+audit which approved Learnings are attached.
 
 ## Reviews across projects
 
@@ -105,16 +112,17 @@ one table.
 **Use this page to:** monitor active review work and move quickly to the review
 that needs attention.
 
-## Memories across projects
+## Knowledge Graph across projects
 
-![ATX global memory trend with unassigned and approved memories](/img/screenshots/dashboard-memories.png)
+![ATX global Knowledge Graph with approved nodes](/img/screenshots/dashboard-memories.png)
 
-The global Memories page separates items awaiting refinement assignment from
-approved learnings and shows cumulative memory growth. Approved entries retain
-their project and agent attribution.
+The global Knowledge Graph is an inventory of approved, attached Learning nodes
+across all projects. Filter by project or agent and search the node text. Pending
+Learnings remain on their project's Knowledge Graph page so they are reviewed in
+their project context.
 
-**Use this page to:** audit the reusable knowledge ATX has accumulated across
-your local projects.
+**Use this page to:** audit reusable guidance across local projects and navigate
+back to its project or attached agent.
 
 ## Models
 

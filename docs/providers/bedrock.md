@@ -35,35 +35,37 @@ atx provider add bedrock \
 - Include `--aws-session-token` when you are using temporary AWS
   credentials.
 
-## Option 2: shared AWS config or SSO
+## Option 2: select a shared AWS profile
 
-ATX can also work through the shared AWS config path that the Claude CLI
-and AWS SDK read, including AWS SSO sessions.
-
-1. Configure AWS access for the shell environment you will use.
-2. If you use SSO, run:
+Use a named profile for AWS SSO, `credential_process`, assume-role, or shared
+credentials-file authentication:
 
 ```bash
-aws sso login
+aws sso login --profile engineering
+atx provider add bedrock --profile engineering --aws-region us-east-1
 ```
 
-3. Export the Bedrock trigger and region before starting the daemon:
+- A selected profile takes precedence over ambient AWS profiles, environment
+  credentials, web identity, and ECS credentials. It still honors
+  `AWS_CONFIG_FILE` and `AWS_SHARED_CREDENTIALS_FILE`.
+- If the selected SSO session expires, renew it with
+  `aws sso login --profile engineering` and restart the daemon.
+- The saved profile and static access-key credentials are mutually exclusive.
+
+## Option 3: use the AWS default credential chain
+
+When no static credentials or named profile are saved, ATX resolves the normal
+AWS SDK credential chain at runtime. This supports environment credentials,
+shared profiles and SSO, web identity, ECS, IMDS, and assume-role credentials.
+Select Bedrock explicitly and provide a region when your AWS configuration does
+not already contain one:
 
 ```bash
-export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1
+atx project init --provider=bedrock
 ```
 
-4. Start or restart the daemon:
-
-```bash
-atx server stop && atx server start
-```
-
-This path relies on the shared AWS credentials/config and SSO cache that
-the underlying tooling already knows how to read.
-
-## Option 3: Bedrock API key for Mantle Responses
+## Optional: Bedrock API key for Mantle Responses
 
 ```bash
 atx provider add bedrock \
@@ -75,11 +77,10 @@ Alternatively, export `AWS_BEARER_TOKEN_BEDROCK` and `AWS_REGION` before
 starting the daemon. ATX checks the environment variable before a persisted
 Bedrock API key.
 
-Mantle credentials are used only for `openai.gpt-*` models. Configure AWS
-credentials separately if the same installation also runs Anthropic or
-Converse-backed Bedrock models. The API-key and AWS access-key flag sets cannot
-be mixed in one `provider add` invocation, but separate invocations preserve
-both credential contracts.
+Bearer credentials apply only to `openai.gpt-*` models and take precedence for
+the Mantle Responses path. When no bearer is configured, Mantle uses the same
+AWS SigV4 resolution as the other Bedrock runtime paths. The API-key and static
+AWS credential flags cannot be mixed in one `provider add` invocation.
 
 ## Supported models
 
@@ -120,7 +121,6 @@ expand it.
 | Model | Bedrock slug |
 |---|---|
 | Kimi K2 Thinking | `moonshot.kimi-k2-thinking` |
-| Kimi K2.5 | `moonshotai.kimi-k2.5` |
 
 ### OpenAI lab
 
@@ -136,7 +136,6 @@ expand it.
 
 | Model | Bedrock slug |
 |---|---|
-| GLM 4.7 | `zai.glm-4.7` |
 | GLM 5 | `zai.glm-5` |
 
 Run `atx provider models list bedrock` to inspect the installed catalog.
@@ -167,9 +166,9 @@ atx project init \
   - Other non-Anthropic Bedrock models go through the Bedrock Converse path,
     which supports text generation, streaming, basic tool use, and ATX cost
     accounting when catalog pricing is known.
-  - `openai.gpt-*` models use Bedrock Mantle Responses. ATX records their token
-    usage under the `bedrock` provider, but their dollar pricing is unknown in
-    `26.08.04`; use AWS billing as spend truth.
+  - `openai.gpt-*` models use Bedrock Mantle Responses. ATX records token usage
+    and catalog pricing under the `bedrock` provider. Use AWS billing as spend
+    truth.
 - ATX automatically applies each Bedrock alias's Responses protocol,
   context-window limit, and temperature compatibility. These overrides do not
   affect direct OpenAI or OpenRouter versions of the same model.

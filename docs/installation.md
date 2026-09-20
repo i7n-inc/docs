@@ -7,6 +7,9 @@ sidebar_position: 2
 
 # Installation
 
+**Download ATX directly from the GitHub releases page:
+[github.com/i7n-inc/atx-releases/releases/latest](https://github.com/i7n-inc/atx-releases/releases/latest)**
+
 ATX runs on **macOS** and **Linux**. Windows is out of scope.
 
 ## Prerequisites
@@ -23,24 +26,49 @@ ATX runs on **macOS** and **Linux**. Windows is out of scope.
 
 ## Install
 
-Visit [iteration.sh/try](https://iteration.sh/try), enter your work
-email, and you'll receive a tokenized one-liner. Run it in your
-terminal:
+ATX ships as a single static binary. No token, no signup — every asset
+on the releases page is downloadable unauthenticated.
+
+1. Go to **[github.com/i7n-inc/atx-releases/releases/latest](https://github.com/i7n-inc/atx-releases/releases/latest)**.
+2. Download the asset matching your OS and architecture:
+
+   | Platform | Asset |
+   |---|---|
+   | macOS (Apple Silicon) | `atx-<VERSION>-darwin-arm64` |
+   | macOS (Intel) | `atx-<VERSION>-darwin-amd64` |
+   | Linux (x86_64) | `atx-<VERSION>-linux-amd64` |
+   | Linux (arm64) | `atx-<VERSION>-linux-arm64` |
+
+3. Make it executable and move it to any directory on your `PATH`
+   (for example `~/.local/bin`):
+
+   ```bash
+   chmod +x atx-*-*-*
+   mv atx-*-*-* ~/.local/bin/atx
+   ```
+
+4. (Optional) Verify the checksum against `checksums.txt` from the same
+   release:
+
+   ```bash
+   sha256sum -c checksums.txt --ignore-missing
+   ```
+
+## Verify
 
 ```bash
-curl -fsSL "https://iteration.sh/install/<your-token>" | sh
+atx version
 ```
 
-The installer picks the right binary for your OS and architecture and
-drops it into your `PATH`.
+## Upgrading
 
-Verify:
+Once installed, ATX updates itself in place:
 
 ```bash
-atx --version
+atx update
 ```
 
-## Next
-
-Head to the [Quickstart](/quickstart) to configure a provider, start the
-daemon, and run your first review.
+The command reads the same public manifest, swaps the binary, and
+restarts the daemon if it was running. As long as `atx` is on your
+`PATH` and lives in a directory you own, no elevated privileges are
+required.

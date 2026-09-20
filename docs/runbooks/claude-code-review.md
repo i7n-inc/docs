@@ -59,8 +59,11 @@ atx review request --prompt "review my staged changes"
 ATX returns a rating plus blocking findings such as `B1` and `B2`. Fix
 the blockers, then re-run the review.
 
-Repeated `atx review request` runs group into the same active review
-block, so the dashboard keeps the whole loop together.
+Hook-driven reviews stay in the active session review. For repeated stateless
+`atx review request` calls, ATX groups requests only when it can verify the
+same objective; a different or ambiguous scope starts a new review. Pass
+`--review <review-id>` when you need to attach a request to an active review in
+the same project.
 
 ## 7. Inspect the result in the dashboard
 

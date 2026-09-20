@@ -11,7 +11,7 @@ first ATX review pinned to Bedrock.
 
 ## 1. Add Bedrock credentials
 
-For Anthropic and Converse-backed models, configure AWS credentials:
+Configure AWS credentials with either static keys or a selected shared profile:
 
 ```bash
 atx provider add bedrock \
@@ -23,8 +23,19 @@ atx provider add bedrock \
 If your AWS session requires a session token, include
 `--aws-session-token` as well.
 
-For an `openai.gpt-*` model on Bedrock Mantle Responses, configure a Bedrock
-API key instead:
+For an SSO or shared AWS profile:
+
+```bash
+aws sso login --profile engineering
+atx provider add bedrock --profile engineering --aws-region us-east-1
+```
+
+The selected profile is used in preference to ambient AWS credentials. If its
+SSO session expires, run `aws sso login --profile engineering` again and restart
+the daemon.
+
+An `openai.gpt-*` model on Bedrock Mantle Responses can also use an optional
+Bedrock API key:
 
 ```bash
 atx provider add bedrock \
@@ -32,9 +43,9 @@ atx provider add bedrock \
   --aws-region us-east-1
 ```
 
-You can also export `AWS_BEARER_TOKEN_BEDROCK` and `AWS_REGION`. Configure the
-two credential contracts in separate `provider add` invocations if the same
-installation runs both kinds of model.
+You can also export `AWS_BEARER_TOKEN_BEDROCK` and `AWS_REGION`. Without a
+bearer token, Mantle uses the same AWS SigV4 credential resolution as other
+Bedrock models.
 
 ## 2. Start the daemon
 
@@ -90,7 +101,6 @@ MiniMaxAI, MoonshotAI, OpenAI, and ZAI. See the
 ## 7. Know the Bedrock cost caveat
 
 Anthropic-on-Bedrock runs report zero ATX review cost because the Claude CLI
-does not return provider billing data. Converse-backed models report cost only
-when the Bedrock catalog contains pricing. Mantle Responses reports token usage
-under the `bedrock` provider, but its five GPT aliases have unknown pricing in
-`26.08.04`. Use AWS billing as spend truth.
+does not return provider billing data. Converse-backed models and Mantle
+Responses report cost when their catalog row has pricing. Use AWS billing as
+spend truth.

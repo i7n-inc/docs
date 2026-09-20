@@ -23,7 +23,7 @@ ATX supports three review entry points:
 | `atx review` | You are inside an active Claude Code session and want ATX to review the session's captured changes | No `--prompt` required |
 | `atx review request --prompt "..."` | You want a one-shot review against staged changes, a diff, or an explicit request | Works without hook-captured session state |
 | MCP `review_changes` | Your client already knows the changed files and wants the hook-style path | Same review envelope as CLI JSON |
-| MCP `request_review` | Your client wants to send a free-form review request | Iterations auto-group into one active review block |
+| MCP `request_review` | Your client wants to send a free-form review request | Groups only when ATX can verify the same objective |
 
 ## `atx review`
 
@@ -109,9 +109,11 @@ Typical workflow:
 
 ## Iterating on the same review
 
-Repeated `request_review` iterations now group into the same active
-review block instead of creating a brand-new one every time. That keeps
-the dashboard's Reviews view aligned with the actual review loop.
+Hook-driven requests stay in their active session review. For stateless
+`request_review` calls, ATX compares the request objective with active reviews
+and attaches it only when the match is accepted and unambiguous. A different or
+ambiguous scope starts a new review, rather than risking unrelated work being
+combined in one dashboard row.
 
 Example:
 
@@ -121,7 +123,7 @@ atx review request --prompt "review my staged changes"
 atx review request --prompt "iteration 2: re-review after fixing blocking issues"
 ```
 
-You can also explicitly attach a task to a known review group:
+To guarantee attachment, explicitly target an active review in the same project:
 
 ```bash
 atx review request --review rev-123 --prompt "final verification pass"
