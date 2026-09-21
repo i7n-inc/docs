@@ -29,6 +29,22 @@ ATX runs on **macOS** and **Linux**. Windows is out of scope.
 ATX ships as a single static binary. No token, no signup — every asset
 on the releases page is downloadable unauthenticated.
 
+### One-liner
+
+```bash
+curl -fsSL https://github.com/i7n-inc/atx-releases/raw/main/scripts/install.sh | sh
+```
+
+Detects your OS and architecture, downloads the latest binary from the
+public releases repo, verifies its sha256 checksum, installs it to
+`~/.local/bin/atx`, and starts the daemon. Requires `curl`; requires the
+[`gh` CLI](https://cli.github.com/) on `PATH` for the daemon-start step.
+
+Optional: set `ATX_DEST` to override the install directory
+(default: `$HOME/.local/bin`).
+
+### Manual download
+
 1. Go to **[github.com/i7n-inc/atx-releases/releases/latest](https://github.com/i7n-inc/atx-releases/releases/latest)**.
 2. Download the asset matching your OS and architecture:
 
