@@ -98,7 +98,7 @@ Blocking: 0
 Warnings: 2
 ```
 
-![ATX review result](/img/screenshots/first-review.png)
+![ATX review detail with rating, task count, cost, and duration](/img/screenshots/first-review.png)
 
 Typical workflow:
 
@@ -129,7 +129,7 @@ To guarantee attachment, explicitly target an active review in the same project:
 atx review request --review rev-123 --prompt "final verification pass"
 ```
 
-![ATX project review groups](/img/screenshots/dashboard-project-reviews.png)
+![ATX project reviews with status, task count, rating, cost, and duration](/img/screenshots/dashboard-project-reviews.png)
 
 ## MCP behavior
 

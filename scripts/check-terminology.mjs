@@ -7,9 +7,9 @@ const root = process.cwd();
 const immutableHistoryPaths = new Set(['docs/changelog.md']);
 const genericMemoryUses = /\b(?:in-memory|process memory|memory allocation|memory usage|memory leak|memory-safe)\b/gi;
 const retiredPatterns = [
-  /\bmemories?\b/gi,
-  /\bmemory-system\b/gi,
-  /\bknowledge(?:[ _-]?nodes?|nodes?)\b/gi,
+  /\bmemor(?:y|ies)\b/gi,
+  /\bmemory[- ]system\b/gi,
+  /\bknowledge[ _-]?nodes?\b/gi,
   /\bremember_this\b/gi,
 ];
 
@@ -32,6 +32,8 @@ async function filesIn(directory) {
 }
 
 async function activeDocumentationFiles() {
+  // Docusaurus publishes documents from docs/, page/content sources from src/,
+  // and these root configuration and navigation files.
   const directories = ['docs', 'src'];
   const files = (await Promise.all(directories.map((directory) => filesIn(resolve(root, directory))))).flat();
   const topLevel = ['README.md', 'docusaurus.config.ts', 'sidebars.ts'];

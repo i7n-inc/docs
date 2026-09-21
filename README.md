@@ -40,5 +40,5 @@ npm run lint
 npm run build
 ```
 
-The terminology check keeps current documentation on the canonical Learning and
+The terminology check keeps current documentation on the canonical Learnings and
 Knowledge Graph vocabulary. Historical release notes remain unchanged.

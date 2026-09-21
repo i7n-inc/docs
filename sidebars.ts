@@ -10,10 +10,10 @@ const sidebars: SidebarsConfig = {
       label: 'Components',
       collapsed: false,
       items: [
-        'projects',
-        'specialists',
-        'reviews',
         'learnings',
+        'projects',
+        'reviews',
+        'specialists',
       ],
     },
     {

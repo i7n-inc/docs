@@ -11,8 +11,11 @@ test('terminology guard accepts generic computing uses', () => {
 });
 
 test('terminology guard rejects retired domain vocabulary', () => {
-  const findings = findRetiredTerms('ATX Memories and Knowledge Nodes use remember_this.');
-  assert.deepEqual(findings.sort(), ['Knowledge Nodes', 'Memories', 'remember_this'].sort());
+  const findings = findRetiredTerms('ATX memory store has Memories and Knowledge Nodes from remember_this.');
+  assert.deepEqual(
+    findings.sort(),
+    ['memory', 'Memories', 'Knowledge Nodes', 'remember_this'].sort(),
+  );
 });
 
 test('active documentation passes the terminology guard', () => {
