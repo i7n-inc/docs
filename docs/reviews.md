@@ -127,6 +127,8 @@ To guarantee attachment, explicitly target an active review in the same project:
 atx review request --review rev-123 --prompt "final verification pass"
 ```
 
+![ATX project review groups](/img/screenshots/dashboard-project-reviews.png)
+
 ## MCP behavior
 
 The MCP tools return the same v1 review envelope as `atx review
