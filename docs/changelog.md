@@ -11,7 +11,7 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
-## 26.09.05 — 2026-09-19
+## 26.09.05: 2026-09-19
 
 **Breaking**
 
@@ -25,7 +25,7 @@ on the ATX repo.
 **Added**
 
 - **Learnings replace Memory across ATX.** The whole tool now speaks
-  Learnings end-to-end — in the CLI, the REST API, the MCP surface, the
+  Learnings end-to-end: in the CLI, the REST API, the MCP surface, the
   Knowledge Graph UI, and inside the runtime itself. Existing data
   carries over; the new vocabulary is what you'll see everywhere.
 - **`atx project learnings` command surface.** A canonical
@@ -50,7 +50,7 @@ on the ATX repo.
   `deepseek-v4-flash`, `deepseek-v4-pro`, `kimi-k3`, and `glm-5.2` now
   match what OpenRouter actually charges.
 
-## 26.09.04 — 2026-09-15
+## 26.09.04: 2026-09-15
 
 **Added**
 
@@ -58,8 +58,8 @@ on the ATX repo.
   as the global Bedrock selector through
   `atx provider add bedrock --profile <name>` or the dashboard, and
   every Bedrock call will use it. Switching between static
-  credentials and a profile is atomic — no half-configured state —
-  and the CLI redacts the value everywhere it is displayed back.
+  credentials and a profile is atomic, with no half-configured state.
+  The CLI redacts the value everywhere it is displayed back.
 
 **Fixed**
 
@@ -75,13 +75,13 @@ on the ATX repo.
 - **Grouping oracle has a workable time budget.** The oracle now has
   20s per call and 30s total. The previous 2s budget was unreachable
   for the actual leader model, so every stateless review request
-  timed out and silently minted a new parent — the exact bug the
+  timed out and silently minted a new parent. This was the exact bug the
   oracle was meant to fix.
 - **Costs and durations read cleanly.** Review costs render to two
   decimal places and durations show as elapsed time in the CLI and
   PR summaries. Raw values in the JSON envelopes are unchanged.
 
-## 26.09.03 — 2026-09-15
+## 26.09.03: 2026-09-15
 
 **Added**
 
@@ -108,7 +108,7 @@ on the ATX repo.
 
 - **Bedrock authentication is consistent everywhere.** Whether ATX
   reaches Bedrock through the Claude CLI, Converse, or Mantle, it uses
-  the same AWS credential resolution — full SDK default chain, SSO, IAM
+  the same AWS credential resolution: full SDK default chain, SSO, IAM
   roles, and profile-derived regions all work, and persisted values win
   over ambient environment. Failures now surface the actual
   credential-chain error.
@@ -117,7 +117,7 @@ on the ATX repo.
   instead of a partial synthesis. Malformed output is rejected the same
   way.
 
-## 26.09.02 — 2026-09-14
+## 26.09.02: 2026-09-14
 
 **Added**
 
@@ -151,7 +151,7 @@ on the ATX repo.
   temporarily reverted, so cost and outcome dashboards show complete
   data again.
 
-## 26.09.01 — 2026-09-11
+## 26.09.01: 2026-09-11
 
 **Breaking**
 
@@ -163,7 +163,7 @@ on the ATX repo.
 **Added**
 
 - **Workspace Knowledge Graph.** A dashboard-wide view of how your fleet
-  is building knowledge across every project — 14-day rolling activity
+  is building knowledge across every project, with 14-day rolling activity
   for approved Knowledge Nodes and completed Reviews, plus token spend
   broken out by project.
 - **Per-project knowledge summary and graph.** Each project now has its
@@ -179,7 +179,7 @@ on the ATX repo.
 
 - **Bundled pricing catalog refreshed.** Full reconciliation against
   vendor pricing pages. Three vendor-deprecated models removed
-  (`moonshotai/kimi-k2.5`, `zai/glm-4.7`, `alibaba/qwen3.8-max`) — if
+  (`moonshotai/kimi-k2.5`, `zai/glm-4.7`, `alibaba/qwen3.8-max`). If
   your agents were configured on any of these, reassign them to a
   current model. Newer AWS Bedrock models (Claude 4.5/4.8/5, GPT-5.x on
   Bedrock) and third-party proxy hosts (coralbricks, lilac) now price
@@ -197,27 +197,27 @@ on the ATX repo.
 - **OpenAI Responses-API JSON mode works cleanly.** Fixed the guard
   that rejected valid `RequireJSON` requests against the Responses API.
 - **Every priced model ships with a real rate.** Closed the last of the
-  nil-pricing gaps — cost previews and totals stop rendering blanks or
+  nil-pricing gaps: cost previews and totals stop rendering blanks or
   "$0.00" for commercial models.
 - **Dashboard chrome polish.** Consistent chrome across project tabs;
   knowledge graph navigation behaves predictably as you move between
   scopes.
 
-## 26.09.00 — 2026-09-09
+## 26.09.00: 2026-09-09
 
 **Fixed**
 
 - **Self-updates download correctly.** Fixed a case where `atx update`
   could not find the versioned release binary and returned a 404 error.
 
-## 26.08.06 — 2026-09-09
+## 26.08.06: 2026-09-09
 
 **Added**
 
 - **Download updates from GitHub.** Release binaries, checksums, and
   update metadata are now mirrored to the public
   [`i7n-inc/atx-releases`](https://github.com/i7n-inc/atx-releases)
-  repository, and `atx update` pulls from those GitHub downloads —
+  repository, and `atx update` pulls from those GitHub downloads. This is
   easier to inspect and verify than the previous distribution path.
 - **Refreshed dashboard branding.** The sidebar now includes the
   iteration.sh logo.
@@ -228,7 +228,7 @@ on the ATX repo.
   Bedrock requests could not sign with credentials provided through
   AWS SSO, instance metadata, or assumed roles.
 
-## 26.08.05 — 2026-08-15
+## 26.08.05: 2026-08-15
 
 **Breaking**
 
@@ -247,7 +247,7 @@ on the ATX repo.
   stopped calling the retired learning-generation endpoint when sessions
   close, so the noise you may have seen after a session wraps is gone.
 
-## 26.08.04 — 2026-08-10
+## 26.08.04: 2026-08-10
 
 **Added**
 
@@ -264,7 +264,7 @@ on the ATX repo.
 - Review-group descriptions render completely as safe GitHub-flavored
   Markdown.
 
-## 26.08.03 — 2026-08-09
+## 26.08.03: 2026-08-09
 
 **Breaking**
 
@@ -300,7 +300,7 @@ on the ATX repo.
 - Strengthened Bedrock drift detection, end-to-end catalog checks, and pricing
   backfill verification.
 
-## 26.08.02 — 2026-08-03
+## 26.08.02: 2026-08-03
 
 :::note[Superseded by 26.08.03]
 The CoralBricks sync workflow below describes 26.08.02. Current releases use
@@ -313,8 +313,8 @@ the deterministic catalogs documented in each [provider guide](/providers).
   dashboard's Add Provider dropdown or via the CLI with a
   `CORALBRICKS_API_KEY` (or `CORAL_API_KEY` alias). CoralBricks-hosted
   models route through the standard OpenAI-format factory and appear
-  alongside your other providers in the models list. No bundled
-  catalog — `atx provider sync coralbricks` fetches every model your
+  alongside your other providers in the models list. There is no bundled
+  catalog. `atx provider sync coralbricks` fetches every model your
   key exposes, and `atx project init --provider=coralbricks` requires
   `--model=<slug>` (mirrors `litellm` / `ollama`) (#913). See the
   [CoralBricks provider guide](/providers/coralbricks).
@@ -330,16 +330,16 @@ the deterministic catalogs documented in each [provider guide](/providers).
   CoralBricks-routed models classify correctly (#919).
 - Dashboard: replace CoralBricks icon with the real logo from the
   vendor site (#918).
-- Dashboard: add CoralBricks to the Add Provider dropdown — closes the
+- Dashboard: add CoralBricks to the Add Provider dropdown. This closes the
   #766 miss (#917).
 - Fleet: retire prior findings once a specialist hits the pass ceiling
   (#916, closes #915).
 
-## 26.08.01 — 2026-08-01
+## 26.08.01: 2026-08-01
 
 **Added**
 
-- `atx project memory why|edit|triage` — inspect why a memory exists,
+- `atx project memory why|edit|triage`: inspect why a memory exists,
   edit its content or scope, and bulk-triage a project's memory pool
   from the terminal (#903, implements #410).
 - Dashboard memory tab upgraded with bulk triage across many memories,
@@ -366,7 +366,7 @@ the deterministic catalogs documented in each [provider guide](/providers).
   output contract in multi-round runs, instead of the specialist-role
   contract it was inadvertently getting (#906).
 
-## 26.07.09 — 2026-07-30
+## 26.07.09: 2026-07-30
 
 **Added**
 
@@ -379,7 +379,7 @@ the deterministic catalogs documented in each [provider guide](/providers).
   clean up stale entries (#866, #868, #869, #870, #871, #872, #873,
   #876, #884).
 - **"Remember this" fast-track.** The `remember_this` MCP tool
-  promotes something to memory synchronously — no refinement wait, no
+  promotes something to memory synchronously, with no refinement wait or
   LLM hop. Bind it to an agent name and it lands as an
   approved-and-attached memory on the next agent invocation (#869).
 - **Cumulative memory chart on the dashboard.** The memory page shows
@@ -393,8 +393,8 @@ the deterministic catalogs documented in each [provider guide](/providers).
   with rounds, and findings from earlier passes stay visible in later
   ones (#781, #860, #895).
 - **One-click in-place upgrade.** When a new ATX release is available,
-  the dashboard shows an upgrade banner with an install button — no
-  more copying commands into a terminal (#709, #863).
+  the dashboard shows an upgrade banner with an install button, so there is
+  no more copying commands into a terminal (#709, #863).
 - **Copy Trace on task detail.** Click once to copy the full task
   trace from the dashboard for pasting into a bug report or handoff
   (#801, #861).
@@ -422,7 +422,7 @@ the deterministic catalogs documented in each [provider guide](/providers).
   pre-flight; Anthropic Bedrock version tail stripped so cost isn't
   \$0 (#849, #852, #853).
 
-## 26.07.08 — 2026-07-30
+## 26.07.08: 2026-07-30
 
 Released and immediately re-cut. `26.07.08` was tagged without the
 `internal/releasenotes/releases/26.07.08/ReleaseNotes.md` bundled into
@@ -431,7 +431,7 @@ the binary, so users on `26.07.08` see `26.07.07`'s notes on
 tree with the paperwork in place. See `26.07.09` for the actual
 shipped content.
 
-## 26.07.07 — 2026-07-23
+## 26.07.07: 2026-07-23
 
 **Added**
 
@@ -463,7 +463,7 @@ shipped content.
 - Bedrock model cache now loads in the CLI catalog builder (#817 follow-
   up, #823).
 
-## 26.07.06 — 2026-07-20
+## 26.07.06: 2026-07-20
 
 **Added**
 
@@ -492,7 +492,7 @@ shipped content.
 - Release skill updater URLs corrected and 707 plan added (#764).
 - Implementation plan for docs.iteration.sh (#759, #775).
 
-## 26.07.05 — 2026-07-17
+## 26.07.05: 2026-07-17
 
 **Fixed**
 
@@ -509,11 +509,11 @@ shipped content.
 - Execution plan for Group Tasks into Reviews under `.itx/747/00_PLAN.md`
   (#756).
 
-## 26.07.04 — 2026-07-16
+## 26.07.04: 2026-07-16
 
 **Added**
 
-- `pkg/templates` registry + `atx templates {list,show,export}` — seeded
+- `pkg/templates` registry + `atx templates {list,show,export}`: seeded
   `pr-review-summary` v1 template becomes the single source of truth for
   the ATX Review Summary block in PR bodies. Wired into leader prompt,
   review envelope, and CLI text output (#726, closes #724).
@@ -533,11 +533,11 @@ shipped content.
 - Final Review card renders the leader's markdown summary instead of the
   JSON envelope (#744).
 
-## 26.07.03 — 2026-07-13
+## 26.07.03: 2026-07-13
 
 **Added**
 
-- Dashboard design-system refresh — HSL-tokenized two-layer palette,
+- Dashboard design-system refresh: HSL-tokenized two-layer palette,
   self-hosted Inter + Instrument Serif fonts (~91 KB) embedded via
   `//go:embed`, primitive classes (`.btn`, `.card`, `.input`,
   `table.data`, `.pill`), motion tokens with
@@ -557,29 +557,29 @@ shipped content.
   snapshot; init-time stale-slug rejection + fallback-pricing regression
   coverage (#718, closes #711).
 
-## 26.07.02 — 2026-07-10
+## 26.07.02: 2026-07-10
 
 **Added**
 
-- Bulk provider-constrained rematch — `atx project agents rematch
+- Bulk provider-constrained rematch: `atx project agents rematch
   --provider <name>` re-runs model selection against a single provider's
   catalog. Shared `pkg/rematch` code path for CLI and REST; per-project
   single-writer lock; leader-last mutation ordering (#679, #683, #685,
   #686, #687).
-- Custom (user-authored) agents — new `fleet_agents.source_kind` column;
+- Custom (user-authored) agents: new `fleet_agents.source_kind` column;
   `POST` / `PATCH` / `DELETE` on custom rows; dashboard wizard and edit
   modal. Learnings survive deletion with `NULL` source (#383.1–.3, #694,
   #700, #704).
 - Auto-minted planner specialist per project (`activation='on_demand'`),
   invoked via `atx review request --agent planner` or MCP
   `request_review.agent` (#691, #698).
-- Per-review PostHog telemetry — `atx_task_completed`,
+- Per-review PostHog telemetry: `atx_task_completed`,
   `atx_task_failed`, `atx_task_cancelled` now carry `project_hash`,
   `provider`, `model`, `duration_ms`, tokens, `cost_usd`, and a
   closed-enum `error_category`. Cancelled-path cost rollup fixed
   (#672, #684).
 - Per-model cost / token breakdown on task-completed / cancelled events
-  (`per_model_breakdown[]`) — closed row schema, byte-stable ordering
+  (`per_model_breakdown[]`): closed row schema, byte-stable ordering
   (#690, #693).
 - `/dashboard/release-notes` page rendering customer-POV release notes
   from binary-embedded `internal/releasenotes/releases/*/ReleaseNotes.md`
@@ -588,16 +588,16 @@ shipped content.
 **Fixed**
 
 - LiteLLM agents now route through the OpenAI Messages-API path so
-  per-request tokens flow through the 4-bucket cost rollup — no more
+  per-request tokens flow through the 4-bucket cost rollup, with no more
   `cost_usd=0` against paid upstreams (#688, #689).
 - `SelectBestFit` tiebreak gates by tag category to prevent cross-
   category model bleed (#699, #702).
 
-## 26.07.01 — 2026-07-06
+## 26.07.01: 2026-07-06
 
 **BREAKING**
 
-- Review response envelope v1 — MCP tool results (`review_changes`,
+- Review response envelope v1: MCP tool results (`review_changes`,
   `request_review`) and CLI `--format=json` output nest the review
   payload under `atx_review.*` with a fixed `caller_instructions` block.
   Version discriminator: `atx_review.version == "1"`. Scrapers pinned on
@@ -609,16 +609,16 @@ shipped content.
 
 **Added**
 
-- LiteLLM as a first-class provider — `atx provider add litellm`
+- LiteLLM as a first-class provider: `atx provider add litellm`
   (interactive + scripted), dashboard add dialog, `LITELLM_BASE_URL` env
   auto-detection, pre-persist probe of `/v1/models`, `/v1/model/info`
   catalog enrichment that promotes slugs to `PricingTier=paid` on any
   non-zero cost declaration (#675, #676, #677).
-- Memory refinement — 8-phase rollout under PRD #388 turning ad-hoc
+- Memory refinement: 8-phase rollout under PRD #388 turning ad-hoc
   learnings into a curated per-project memory store: dry-run classifier,
   manual `--apply` prune, refinement-driven recommendation binding,
   byte-for-byte undo, approved-memory protection, scheduled autopilot,
   on-demand REST trigger + telemetry, dashboard parity (#655–#662).
-- Dashboard navigation — breadcrumbs on every page,
+- Dashboard navigation: breadcrumbs on every page,
   `/dashboard/sitemap`, and a root-path redirect `/` → `/dashboard`
   (#650, #651).

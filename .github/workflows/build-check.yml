@@ -1,7 +1,7 @@
 name: Build check (non-main)
 
 # Verifies the Docusaurus site builds on PRs and non-main branches.
-# Does NOT deploy — deploy is main-only in deploy.yml.
+# Does NOT deploy: deploy is main-only in deploy.yml.
 
 on:
   pull_request:
@@ -24,4 +24,6 @@ jobs:
           cache: npm
 
       - run: npm ci
+      - run: npm run lint
+      - run: npm run test
       - run: npm run build

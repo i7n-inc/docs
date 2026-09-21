@@ -13,7 +13,10 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "terminology:check": "node scripts/check-terminology.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "lint": "npm run typecheck && npm run terminology:check"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",

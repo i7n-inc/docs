@@ -1,9 +1,9 @@
 # Iteration Docs
 
-Documentation site for [Iteration](https://iteration.sh) — an operating
+Documentation site for [Iteration](https://iteration.sh), an operating
 system for software factories. Currently covers **ATX**, Iteration's
 local-first agent daemon for code review, per-project model routing, and
-on-disk memory.
+project Learnings.
 
 Published at [docs.iteration.sh](https://docs.iteration.sh).
 
@@ -31,3 +31,14 @@ npm run build
 ```
 
 Emits the static site into `build/`. Any static host will serve it.
+
+## Checks
+
+```bash
+npm run test
+npm run lint
+npm run build
+```
+
+The terminology check keeps current documentation on the canonical Learnings and
+Knowledge Graph vocabulary. Historical release notes remain unchanged.

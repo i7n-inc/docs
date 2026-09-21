@@ -11,7 +11,7 @@ sidebar_position: 1
   <iframe
     style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0}}
     src="https://www.youtube.com/embed/U0KfZtfknLw"
-    title="Iteration — 3 minute intro"
+    title="Iteration: 3 minute intro"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowFullScreen
   />
@@ -26,25 +26,25 @@ cost efficient, and secure.
 
 ## What is ATX?
 
-**ATX** (AgenT neXus) is Iteration's **local-first agent daemon** — the
+**ATX** (AgenT neXus) is Iteration's **local-first agent daemon**, the
 component of the OS that runs on a developer's machine. It does three
 things:
 
-1. **Reviews code locally** — a fleet of specialized agents reads your
+1. **Reviews code locally**: a fleet of specialized agents reads your
    staged changes, session diffs, or a commit range and returns a
    structured verdict: blocking issues (`B1`, `B2`, ...), warnings, and a
    rating. No PR URL, no cloud round-trip.
-2. **Optimizes models for your project** — ATX inspects each repo,
+2. **Optimizes models for your project**: ATX inspects each repo,
    generates a purpose-built agent fleet, and lets you route different
    review roles to the provider and model that actually fit the project
    (Anthropic, OpenAI through an API key or ChatGPT/Codex subscription,
    Bedrock, LiteLLM, or a local Ollama model).
-3. **Collects memories from local work** — resolved issues, reviewer
-   feedback, and recurring patterns feed ATX's memory store, so future
+3. **Captures Learnings from local work**: resolved issues, reviewer
+   feedback, and recurring patterns become project Learnings, so future
    reviews reference your codebase's real conventions instead of generic
-   advice. Memory lives on disk in your project, not in a hosted service.
+   advice. ATX persists project Learnings for future reviews.
 
-You don't hand ATX a PR URL and wait — it plugs into your existing coding
+You don't hand ATX a PR URL and wait. It plugs into your existing coding
 loop (Claude Code sessions, staged changes, or a specific commit range) and
 returns structured, actionable feedback.
 
@@ -57,42 +57,96 @@ returns structured, actionable feedback.
 - Anyone using Claude Code, OpenAI, Bedrock, or a LiteLLM proxy who
   wants an agentic quality gate in front of their commits.
 
-## How ATX works
-
 ATX runs a **review-fix loop** in front of every commit. The developer
 (or their coding agent) writes code, ATX reviews it, the developer fixes
-what's flagged, and the loop repeats — usually a handful of times — until
+what's flagged, and the loop repeats, usually a handful of times, until
 the rating clears the merge gate. Only then does the commit land.
 
-```
-   Developer                  ATX
-   ─────────                  ───
-
-   write code   ── review ─▶  rating 2/5, blockers
-                ◀─ verdict ──
-   fix          ── review ─▶  rating 3/5, blockers
-                ◀─ verdict ──
-   fix          ── review ─▶  rating 4/5, clean  ✓
-                ◀─ verdict ──
-   git commit
-```
+<section className="overview-flow overview-flow--reference" aria-labelledby="overview-flow-title">
+  <div className="overview-flow__intro">
+    <h2 id="overview-flow-title">How ATX works</h2>
+    <div className="overview-flow__copy">Continuous independent verification, one clean commit.</div>
+  </div>
+  <div className="overview-flow__reference" aria-label="ATX review and fix loop">
+    <div className="overview-flow__columns">
+      <div>
+        <strong>Coding agent</strong>
+        <span>Claude Code, Codex, OpenCode</span>
+      </div>
+      <div aria-hidden="true"></div>
+      <div><strong>ATX</strong></div>
+    </div>
+    <div className="overview-flow__prompt-grid">
+      <div className="overview-flow__prompt">Developer sends a prompt</div>
+      <div aria-hidden="true"></div>
+      <div aria-hidden="true"></div>
+    </div>
+    <div className="overview-flow__left-arrow-grid" aria-hidden="true">
+      <span>↓</span>
+      <div></div>
+      <div></div>
+    </div>
+    <ol className="overview-flow__reference-steps">
+      <li className="overview-flow__reference-row">
+        <div className="overview-flow__reference-card">Writes code</div>
+        <div className="overview-flow__reference-arrow" aria-hidden="true"><span>review changes</span><b>→</b></div>
+        <div className="overview-flow__reference-card">Reviews code</div>
+      </li>
+      <li className="overview-flow__reference-result overview-flow__reference-result--rejected">
+        <span aria-hidden="true">←</span>
+        <strong>rejected - 3 violations, root cause, suggestions</strong>
+      </li>
+      <li className="overview-flow__reference-row">
+        <div className="overview-flow__reference-card">Fixes code</div>
+        <div className="overview-flow__reference-arrow" aria-hidden="true"><span>review changes</span><b>→</b></div>
+        <div className="overview-flow__reference-card">Reviews again</div>
+      </li>
+      <li className="overview-flow__reference-result overview-flow__reference-result--rejected">
+        <span aria-hidden="true">←</span>
+        <strong>rejected - 1 violation, root cause, suggestions</strong>
+      </li>
+      <li className="overview-flow__reference-row">
+        <div className="overview-flow__reference-card">Fixes code</div>
+        <div className="overview-flow__reference-arrow" aria-hidden="true"><span>review changes</span><b>→</b></div>
+        <div className="overview-flow__reference-card">Reviews again</div>
+      </li>
+      <li className="overview-flow__reference-result overview-flow__reference-result--approved">
+        <span aria-hidden="true">←</span>
+        <strong>approved - all clear</strong>
+      </li>
+    </ol>
+    <div className="overview-flow__left-arrow-grid" aria-hidden="true">
+      <span>↓</span>
+      <div></div>
+      <div></div>
+    </div>
+    <div className="overview-flow__commit-grid">
+      <div className="overview-flow__commit-card">
+        <strong>Commit lands</strong>
+        <span>Clean commit, zero violations</span>
+      </div>
+      <div aria-hidden="true"></div>
+      <div aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
 
 ### The loop, step by step
 
-1. **Start the daemon** — `atx server start`. One long-lived process on
+1. **Start the daemon**: `atx server start`. One long-lived process on
    `http://localhost:30000` supervises everything.
-2. **Initialize your project** — `atx project init` in your repo. ATX
+2. **Initialize your project**: `atx project init` in your repo. ATX
    inspects the codebase, generates a purpose-built agent fleet, and
    registers the project.
-3. **Review your changes** — `atx review` (session hook) or
+3. **Review your changes**: `atx review` (session hook) or
    `atx review request --prompt "..."` (ad-hoc scope). The fleet routes
    each agent through the provider/model configured for its role and
    returns a rating, blocking issues, and warnings.
-4. **Iterate** — fix the blockers, re-review, repeat until the rating
+4. **Iterate**: fix the blockers, re-review, repeat until the rating
    clears your merge gate.
-5. **Learnings persist** — resolved issues and reviewer feedback feed
-   ATX's on-disk memory store, so the next review references your
-   project's real patterns instead of generic advice.
+5. **Learnings persist**: resolved issues and reviewer feedback become
+   project Learnings, so the next review references your project's real
+   patterns instead of generic advice.
 
 ## Install
 
@@ -108,7 +162,7 @@ Full options and the manual-download flow live on the
 
 ## What's next
 
-- [Installation](/installation) — install ATX on macOS or Linux.
-- [Quickstart](/quickstart) — from install to your first successful
+- [Installation](/installation): install ATX on macOS or Linux.
+- [Quickstart](/quickstart): from install to your first successful
   review in under 10 minutes.
-- [Providers and Authentication](/providers) — configure authentication.
+- [Providers and Authentication](/providers): configure authentication.

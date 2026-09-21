@@ -14,19 +14,19 @@ ATX runs on **macOS** and **Linux**. Windows is out of scope.
 
 ## Prerequisites
 
-- **`gh` CLI** — a hard runtime dependency. ATX shells out to `gh` for
+- **`gh` CLI**: a hard runtime dependency. ATX shells out to `gh` for
   every GitHub interaction (issue lookups, PR context, diffs). Install
   from [cli.github.com](https://cli.github.com/) and authenticate with
   `gh auth login`.
-- **A supported LLM provider** — Anthropic API key, an active `claude
+- **A supported LLM provider**: Anthropic API key, an active `claude
   login` session, an OpenAI API key or ChatGPT/Codex subscription
   authenticated through the `openai` provider, AWS Bedrock credentials,
   or a reachable LiteLLM proxy. See [Providers](/providers).
-- **Git** — for repositories ATX reviews.
+- **Git**: for repositories ATX reviews.
 
 ## Install
 
-ATX ships as a single static binary. No token, no signup — every asset
+ATX ships as a single static binary. No token or signup is required. Every asset
 on the releases page is downloadable unauthenticated.
 
 ### One-liner
