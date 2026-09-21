@@ -13,7 +13,7 @@ const sidebars: SidebarsConfig = {
         'projects',
         'specialists',
         'reviews',
-        'memories',
+        'learnings',
       ],
     },
     {

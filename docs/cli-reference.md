@@ -24,7 +24,7 @@ for the full flag list.
 | `atx project agents` | List agents for a project |
 | `atx project reviews list` | List review groups for a project |
 | `atx project reviews show <review-id>` | Show one review group and its member tasks |
-| `atx project memory list` | List learnings for a project |
+| `atx project learnings list` | List Learnings for a project |
 | `atx review` | Review session changes (via Claude Code hook) |
 | `atx review request --prompt "..."` | On-demand review with custom prompt |
 | `atx provider add <name>` | Add a provider |

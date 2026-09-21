@@ -39,10 +39,10 @@ things:
    review roles to the provider and model that actually fit the project
    (Anthropic, OpenAI through an API key or ChatGPT/Codex subscription,
    Bedrock, LiteLLM, or a local Ollama model).
-3. **Collects memories from local work** — resolved issues, reviewer
-   feedback, and recurring patterns feed ATX's memory store, so future
+3. **Captures Learnings from local work** — resolved issues, reviewer
+   feedback, and recurring patterns become project Learnings, so future
    reviews reference your codebase's real conventions instead of generic
-   advice. Memory lives on disk in your project, not in a hosted service.
+   advice. Learnings stay on disk in your project, not in a hosted service.
 
 You don't hand ATX a PR URL and wait — it plugs into your existing coding
 loop (Claude Code sessions, staged changes, or a specific commit range) and
@@ -90,9 +90,9 @@ the rating clears the merge gate. Only then does the commit land.
    returns a rating, blocking issues, and warnings.
 4. **Iterate** — fix the blockers, re-review, repeat until the rating
    clears your merge gate.
-5. **Learnings persist** — resolved issues and reviewer feedback feed
-   ATX's on-disk memory store, so the next review references your
-   project's real patterns instead of generic advice.
+5. **Learnings persist** — resolved issues and reviewer feedback become
+   on-disk project Learnings, so the next review references your project's
+   real patterns instead of generic advice.
 
 ## What's next
 

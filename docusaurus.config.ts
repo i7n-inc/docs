@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'ATX',
-  tagline: 'Agentic code review, memory, and orchestration',
+  tagline: 'Agentic code review, Learnings, and orchestration',
   favicon: 'img/favicon.svg',
 
   future: {

@@ -105,8 +105,6 @@ Typical workflow:
 3. Re-run the review.
 4. Repeat until the review is clean enough for your merge gate.
 
-![ATX first review result](/img/screenshots/first-review.png)
-
 ## Iterating on the same review
 
 Repeated `request_review` iterations now group into the same active
@@ -126,8 +124,6 @@ You can also explicitly attach a task to a known review group:
 ```bash
 atx review request --review rev-123 --prompt "final verification pass"
 ```
-
-![ATX project reviews](/img/screenshots/dashboard-project-reviews.png)
 
 ## MCP behavior
 
