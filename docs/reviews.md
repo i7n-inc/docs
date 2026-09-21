@@ -98,6 +98,8 @@ Blocking: 0
 Warnings: 2
 ```
 
+![ATX review result](/img/screenshots/first-review.png)
+
 Typical workflow:
 
 1. Run the review.
