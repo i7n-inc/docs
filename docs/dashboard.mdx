@@ -53,11 +53,16 @@ limited to labs available through configured providers.
 **Use this page to:** inspect model assignments, open an agent, add a custom
 specialist, or rematch the fleet.
 
+Each agent also has a Knowledge Graph tab with the approved Learnings attached
+to that agent. Filter it by source or search it to inspect the guidance
+available when ATX assembles later prompts.
+
 ## Project reviews
 
 Project reviews groups every review loop for the workspace and shows its latest
-status, member-task count, rating, total cost, and duration. Iterative
-`request_review` runs stay together instead of appearing as unrelated rows.
+status, member-task count, rating, total cost, and duration. Iterative requests
+group when ATX can verify that they share the same objective; requests with an
+ambiguous or different scope create a new review.
 
 **Use this page to:** find a review, compare iterations, and identify expensive
 or slow review loops.
@@ -74,8 +79,10 @@ and open the exact task that found a blocker or changed the rating.
 
 ## Project Knowledge Graph
 
-The project's Knowledge Graph groups every Learning for that workspace, including
-pending items awaiting review and approved Learnings attached to an agent.
+The project's Knowledge Graph groups every Learning for that workspace,
+including pending items awaiting review and approved Learnings attached to an
+agent. Filter by status, target agent, or text, then approve or reject pending
+Learnings from the item details.
 
 **Use this page to:** review captured guidance before it influences an agent and
 audit which approved Learnings are attached.
@@ -91,12 +98,13 @@ that needs attention.
 
 ## Knowledge Graph across projects
 
-The global Knowledge Graph is an inventory of approved, attached Learnings across
-all projects. Filter by project or agent and search the Learning text. Pending
-Learnings remain on their project's Knowledge Graph page so they are reviewed in
-their project context.
+The global Knowledge Graph is an inventory of approved, attached Learnings
+across all projects. Filter by project or agent and search the Learning text.
+Pending Learnings remain on their project's Knowledge Graph page so they are
+reviewed in their project context.
 
-**Use this page to:** audit reusable guidance across your local projects.
+**Use this page to:** audit reusable guidance across local projects and navigate
+back to its project or attached agent.
 
 ## Models
 

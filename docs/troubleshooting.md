@@ -108,15 +108,15 @@ If status shows the daemon is stopped, run `atx server start` again.
 Anthropic Bedrock models use the Claude CLI subprocess, which does not return
 provider-native billing data; those runs report zero review cost. Other
 non-Anthropic models use Converse and report cost when catalog pricing is known.
-Bedrock `openai.gpt-*` models use Mantle Responses and report token usage, but
-their pricing is unknown in `26.08.04`. Use AWS Cost Explorer as billing truth
-for all three paths.
+Bedrock `openai.gpt-*` models use Mantle Responses and also report catalog
+pricing. Use AWS Cost Explorer as billing truth for all three paths.
 
 ## Bedrock Mantle authentication fails
 
-Mantle Responses requires a Bedrock bearer token and region. Persist them with
+Mantle Responses supports either a Bedrock bearer token or AWS SigV4
+credentials. To use a bearer token, persist it with
 `atx provider add bedrock --api-key <bedrock-api-key> --aws-region us-east-1`,
-or export them before restarting the daemon:
+or export it before restarting the daemon:
 
 ```bash
 export AWS_BEARER_TOKEN_BEDROCK=<bedrock-api-key>
@@ -124,8 +124,9 @@ export AWS_REGION=us-east-1
 atx server stop && atx server start
 ```
 
-Mantle credentials apply only to `openai.gpt-*`. Other Bedrock models still
-require AWS credentials or the AWS SDK credential chain.
+Bearer credentials apply only to `openai.gpt-*`. Without a bearer token, Mantle
+uses the AWS SDK credential chain. If you selected an expired SSO profile,
+renew it with `aws sso login --profile <profile>` and restart the daemon.
 
 ## LiteLLM proxy fails
 
