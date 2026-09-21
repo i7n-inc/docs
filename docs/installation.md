@@ -40,10 +40,8 @@ public releases repo, verifies its sha256 checksum, installs it to
 `~/.local/bin/atx`, and starts the daemon. Requires `curl`; requires the
 [`gh` CLI](https://cli.github.com/) on `PATH` for the daemon-start step.
 
-Optional environment overrides:
-
-- `ATX_DEST` — install directory (default: `$HOME/.local/bin`)
-- `ATX_VERSION` — pin a specific version (default: latest)
+Optional: set `ATX_DEST` to override the install directory
+(default: `$HOME/.local/bin`).
 
 ### Manual download
 
