@@ -22,8 +22,7 @@ operational outcomes such as task duration and token totals. Project-scoped
 events use a truncated hash of ATX's internal project identifier.
 
 ATX does not send source code, file contents, prompts, diffs, API keys, or
-personally identifiable information. Prompts captured for Learning extraction
-remain in the local SQLite database.
+personally identifiable information. Prompts captured for Learning extraction remain local.
 
 ## Disable product analytics
 

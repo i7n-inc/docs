@@ -38,7 +38,7 @@ export default function NotifyOptIn() {
         <input id="downloads-email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" required />
         <button className="button button--secondary" type="submit">Notify me</button>
       </form>
-      {status === 'success' && <p className={styles.success}>Thanks — we’ll keep you posted.</p>}
+      {status === 'success' && <p className={styles.success}>Thanks, we’ll keep you posted.</p>}
       {status === 'error' && <p className={styles.error}>We couldn’t save that address. Please try again.</p>}
     </section>
   );

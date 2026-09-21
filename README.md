@@ -1,9 +1,9 @@
 # Iteration Docs
 
-Documentation site for [Iteration](https://iteration.sh) — an operating
+Documentation site for [Iteration](https://iteration.sh), an operating
 system for software factories. Currently covers **ATX**, Iteration's
 local-first agent daemon for code review, per-project model routing, and
-on-disk Learnings.
+project Learnings.
 
 Published at [docs.iteration.sh](https://docs.iteration.sh).
 
