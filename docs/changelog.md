@@ -11,6 +11,48 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.09.06: 2026-09-28
+
+**Breaking**
+
+- **"Review executions" are now "Revisions."** The dashboard, CLI, API,
+  and MCP surfaces all use the new name. If you scripted against the old
+  task-named review-execution API routes or payloads, switch to the
+  revision-named ones — the old names are gone, with no aliases or
+  redirects. Your stored history migrates automatically the first time
+  the new version starts.
+
+**Added**
+
+- **Daily review-duration graphs.** Workspace and project dashboards now
+  chart your median review duration day by day, so you can see how long
+  reviews are taking and whether that's trending the right way. If you
+  don't have a project set up yet, the dashboard walks you through it.
+- **Learnings in your prompts.** Agent prompts now pull in an agent's
+  Learnings through the `{{ atxEnv "ATX_LEARNINGS" }}` directive — one
+  consistent mechanism across leader, specialist, and worker prompts,
+  resolved fresh at review time.
+- **Older specialist prompts migrate themselves.** If you customized
+  specialist prompts on an earlier version, simple legacy templates are
+  upgraded automatically, and anything unusual is preserved untouched.
+  Invalid prompts now fail up front instead of producing a broken review.
+
+**Fixed**
+
+- **Review durations on existing installations.** Duration insights now
+  include your review history from before this feature existed, and
+  charts render single measurements as clean ticks instead of distorted
+  markers.
+- **Clearer prompt-variable help.** The System Prompt editor now explains
+  each available variable on its own line, including how standalone-line
+  directives work and which ones are leader-only.
+
+**Changed**
+
+- **Fresh pricing for seven OpenRouter models.** Cost estimates for the
+  DeepSeek v4, Kimi, GLM, and MiniMax families now match what OpenRouter
+  actually charges.
+
 ## 26.09.05: 2026-09-19
 
 **Breaking**
