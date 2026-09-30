@@ -74,17 +74,18 @@ ATX returns a structured review with:
 - the rendered markdown review
 - cost and duration metadata in JSON mode
 
-While the task is active, ATX now streams reviewer lifecycle progress to
-the CLI and prints dashboard URLs as soon as the task is created, so you
-can follow the review in the terminal or jump into the web UI.
+While the revision is active, ATX streams reviewer lifecycle progress to
+the CLI and prints dashboard URLs as soon as the revision is created, so
+you can follow the review in the terminal or jump into the web UI.
 
 Sample output:
 
 ```text
 $ atx review request --prompt "review my staged changes"
-Created review task task_01K17Y... for project /home/devashish/workspace/i7n/atx
-Dashboard: http://localhost:30000/dashboard/reviews/rev_01K17Y...
-Project:   http://localhost:30000/dashboard/projects/-home-devashish-workspace-i7n-atx
+Revision created (id: 0d9f6c1e-4b2a-4f5d-9c3e-7a8b1d2e3f40)
+  Dashboard: http://localhost:30000/dashboard/revisions/0d9f6c1e-4b2a-4f5d-9c3e-7a8b1d2e3f40
+  API:       http://localhost:30000/api/revisions/0d9f6c1e-4b2a-4f5d-9c3e-7a8b1d2e3f40
+Polling for completion...
 
 [leader] loading project context
 [leader] selecting specialist reviewers
@@ -98,7 +99,7 @@ Blocking: 0
 Warnings: 2
 ```
 
-![ATX review detail with rating, task count, cost, and duration](/img/screenshots/first-review.png)
+![ATX review detail with rating, revision count, cost, and duration](/img/screenshots/first-review.png)
 
 Typical workflow:
 
@@ -129,11 +130,11 @@ To guarantee attachment, explicitly target an active review in the same project:
 atx review request --review rev-123 --prompt "final verification pass"
 ```
 
-![ATX project reviews with status, task count, rating, cost, and duration](/img/screenshots/dashboard-project-reviews.png)
+![ATX project reviews with status, revision count, rating, cost, and duration](/img/screenshots/dashboard-project-reviews.png)
 
 ## MCP behavior
 
-The MCP tools return the same v1 review envelope as `atx review
+The MCP tools return the same versioned review envelope as `atx review
 --format=json`.
 
 - `review_changes` is the MCP equivalent of the hook-driven review path.
