@@ -107,6 +107,23 @@ Use `atx project learnings reject <learning-id>` to reject a pending Learning.
 Only pending Learnings can be approved or rejected. Prompt-time injection makes
 the approved guidance available to later reviews.
 
+## Reference Learnings in custom prompts
+
+Custom agent system prompts pull in an agent's approved Learnings through the
+`atxEnv` prompt directive:
+
+```text
+{{ atxEnv "ATX_LEARNINGS" }}
+```
+
+Place the directive on its own unindented line. ATX resolves it fresh at review
+time with only that agent's approved Learnings — pending Learnings and other
+agents' guidance are never included.
+
+Leader prompts may use only `ATX_LEARNINGS`. Specialist prompts can also use
+`ATX_DOMAIN_STANDARDS`, `ATX_DIFF`, and `ATX_CHANGED_FILES`; the agent overview
+in the dashboard lists each directive with its meaning.
+
 ## Refine pending Learnings
 
 Refinement evaluates pending Learnings for durable, project-relevant guidance.
