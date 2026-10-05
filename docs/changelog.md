@@ -11,6 +11,51 @@ Latest ATX releases. Full frozen archives live in
 [`docs/releases/`](https://github.com/i7n-inc/atx/tree/main/docs/releases)
 on the ATX repo.
 
+## 26.10.01: 2026-10-04
+
+**Added**
+
+- **Latest models across every provider.** Added current model
+  inventory for Anthropic (Claude Opus/Sonnet 5.5, Fable 5.1), OpenAI
+  (GPT-6 Astra, 6.1 Sol, Sol, Luna), Gemini (3.5 Flash-Lite, 3.7/3.8
+  Flash), Bedrock (Claude 5.5, Kimi K3, Grok 4.7, GPT-6 inference
+  profiles), OpenRouter (18 qualified aliases), and CoralBricks (GLM
+  5.3, GLM 5.3 Flash, DeepSeek V4.1 Flash). Pricing, context windows,
+  cache rates where the provider publishes them, and the authentication
+  routes each provider actually supports are all recorded — unavailable
+  routes aren't dressed up as validated.
+- **Richer Learnings with examples.** Learnings now carry context-aware
+  examples that render after you pick an instruction. The aggregate
+  editor lets you add, edit, and delete examples in one place; saves
+  are atomic; and example evidence is preserved in the changelog so you
+  can see how a Learning evolved.
+- **CoralBricks cost accounting.** CoralBricks now reports cache-read
+  and cache-write amounts, and ATX honors the provider's own
+  `usage.cost` where it's reported.
+
+**Fixed**
+
+- **Stale Learning changelog evidence.** The provider cache now
+  invalidates on write so refined Learnings surface the latest evidence
+  instead of a prior snapshot.
+- **Truncated-looking release notes on GitHub.** The release skill now
+  unwraps hard-wrapped CHANGELOG bullets before publishing to GitHub,
+  so each bullet reads as one line instead of a stack of short
+  fragments.
+- **Agent `gh pr` access in fleet runs.** Review automation no longer
+  stumbles on insufficient `gh` scope.
+
+**Changed**
+
+- **Dashboard UX polish.** Learning editor and Projects views have been
+  refined for clarity and consistency.
+- **Interim Bedrock pricing on nine new aliases.** The AWS Bedrock
+  public pricing JSON hasn't published rates yet for the newly added
+  GPT-6, Claude 5.5/Fable 5.1, Kimi K3, and Grok 4.7 Bedrock aliases.
+  Until it does, ATX uses the matching OpenRouter rates as a stop-gap.
+  Your Bedrock cost estimates for these specific aliases will slightly
+  under-report (missing the usual Bedrock markup) for this release.
+
 ## 26.09.06: 2026-09-28
 
 **Breaking**
